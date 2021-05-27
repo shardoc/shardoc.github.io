@@ -12,14 +12,18 @@ Use can share file for free or ask payment.
 
 ## Modules
 
+### Security (login/logout/roles?)
+
 ### User profile
 
 ### File storage
 
 ### File analyzer
 
+### File search & advices
+
 ### File sharing
 
 ### Communication channel
 
-### Payment flow
+#### Payment flow
