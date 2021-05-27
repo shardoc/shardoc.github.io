@@ -16,6 +16,16 @@ Use can share file for free or ask payment.
 
 #### Security (login/logout/roles?)
 
+Security is implemented based on jwt token.
+Each http request to backend 
+contains authentication header
+Header name: Authentication
+Value: Bearer xxxxxx
+where xxxxxx is jwt token 
+which is generated on successful 
+login request
+
+
 #### User profile
 
 ### File
