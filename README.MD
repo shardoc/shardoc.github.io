@@ -19,11 +19,15 @@ Use can share file for free or ask payment.
 Security is implemented based on jwt token.
 Each http request to backend 
 contains authentication header
+
 Header name: Authentication
+
 Value: Bearer xxxxxx
+
 where xxxxxx is jwt token 
 which is generated on successful 
 login request
+![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/auth.png)
 
 
 #### User profile
