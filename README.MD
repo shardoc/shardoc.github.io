@@ -30,6 +30,21 @@ login request. Mo reinformation othis topic https://codeburst.io/jwt-authorizati
 
 ##### Registration
 ![Registration flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/registration.png)
+
+###### We expose two endpoints for registration flow
+
+**1. Check if login is available**
+   * Path: */check*
+   * Http method: *POST*
+   * Body type: JSON
+   * Body value: *{"email" : "user@email.com"}*
+   
+**2. Create account**
+   * Path: */register*
+   * Http method: *POST*
+   * Body type: JSON
+   * Body value: *{"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}*
+   
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
 ##### Logout flow
