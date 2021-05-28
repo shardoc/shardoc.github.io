@@ -29,8 +29,9 @@ which is generated on successful
 login request. Mo reinformation othis topic https://codeburst.io/jwt-authorization-in-flask-c63c1acf4eeb
 
 ##### Registration
+![Registration flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/registration.png)
 ##### Login flow
-![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/auth.png)
+![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
 ##### Logout flow
 Implemented on UI
 ##### Roles
