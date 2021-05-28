@@ -1,1 +1,43 @@
-test
+# Shardoc documentation pages
+
+https://guides.github.com/features/mastering-markdown/
+
+## Idea
+Shardoc allows you creating shared spaces 
+where you and colleagues could find required
+files.
+User can share files within own circle,
+ make it fully public or keep it private.
+Use can share file for free or ask payment.
+
+## Modules
+
+### User
+
+#### Security (login/logout/roles?)
+
+Security is implemented based on jwt token.
+Each http request to backend 
+contains authentication header
+Header name: Authentication
+Value: Bearer xxxxxx
+where xxxxxx is jwt token 
+which is generated on successful 
+login request
+
+
+#### User profile
+
+### File
+
+#### File storage
+
+#### File analyzer
+
+#### File search & advices
+
+#### File sharing
+
+### Communication
+
+### Payment flow
