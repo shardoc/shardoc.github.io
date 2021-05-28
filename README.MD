@@ -14,7 +14,7 @@ Use can share file for free or ask payment.
 
 ### User
 
-#### Security (login/logout/roles?)
+#### Security (registration/login/logout/roles?)
 
 Security is implemented based on jwt token.
 Each http request to backend 
@@ -26,7 +26,9 @@ Value: Bearer xxxxxx
 
 where xxxxxx is jwt token 
 which is generated on successful 
-login request
+login request. Mo reinformation othis topic https://codeburst.io/jwt-authorization-in-flask-c63c1acf4eeb
+
+##### Registration
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/auth.png)
 ##### Logout flow
