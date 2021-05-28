@@ -27,8 +27,12 @@ Value: Bearer xxxxxx
 where xxxxxx is jwt token 
 which is generated on successful 
 login request
+##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/auth.png)
-
+##### Logout flow
+Implemented on UI
+##### Roles
+For now it's flat structure. No roles introduced
 
 #### User profile
 
