@@ -62,6 +62,7 @@ and creates account.
 3. Password must be encrypted on db.
 
 ###### Classes
+1. 
   * Name: **Account**
   * Purpose: structure and keep info about user
   * Fields:
@@ -73,6 +74,7 @@ and creates account.
     * email
     * createTime
     * updateTime
+2. 
   * Name: **AuthController**
   * Purpose: describe authentication API
   * Methods:
