@@ -74,6 +74,9 @@ and creates account.
     * email
     * createTime
     * updateTime
+  * Methods:
+    * findByLogin
+    *  
 2. 
   * Name: **AuthController**
   * Purpose: describe authentication API
