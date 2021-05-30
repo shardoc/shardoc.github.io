@@ -58,7 +58,8 @@ It allows to be sure there is no user
 with the same login. If login is available 
 then go to *step2*
 2. User executes request on */register* 
-and creates account
+and creates account. 
+3. Password must be encrypted on db.
 
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
