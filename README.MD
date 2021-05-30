@@ -64,15 +64,14 @@ and creates account.
 ###### Classes
   * Name: Account
   * Fields:
-
-           * id 
-           * firstName
-           * lastName
-           * login
-           * password
-           * email
-           * createTime
-           * updateTime
+    * id 
+    * firstName
+    * lastName
+    * login
+    * password
+    * email
+    * createTime
+    * updateTime
 
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
