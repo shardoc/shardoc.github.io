@@ -62,7 +62,8 @@ and creates account.
 3. Password must be encrypted on db.
 
 ###### Classes
-  * Name: Account
+  * Name: **Account**
+  * Purpose: structure and keep info about user
   * Fields:
     * id 
     * firstName
@@ -72,6 +73,11 @@ and creates account.
     * email
     * createTime
     * updateTime
+  * Name: **AuthController**
+  * Purpose: describe authentication API
+  * Methods:
+    * checkLogin
+    * registerAccount
 
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
