@@ -38,13 +38,28 @@ login request. Mo reinformation othis topic https://codeburst.io/jwt-authorizati
    * Http method: *POST*
    * Body type: JSON
    * Body value: *{"email" : "user@email.com"}*
+   * Response type: JSON
+   * Response example: 
+      * available: *{ "status" : "success" }*
+      * not available *{ "status" : "failed" }*
    
 **2. Create account**
    * Path: */register*
    * Http method: *POST*
    * Body type: JSON
-   * Body value: *{"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}*
+   * Body example: 
+      * success *{ "status" : "sucess", "body" : {"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}}*
+      * failed  *{ "status" : "failed", "body" : ""}*
    
+###### Steps
+1. User executes request on */check* url 
+with required json body. 
+It allows to be sure there is no user 
+with the same login. If login is available 
+then go to *step2*
+2. User executes request on */register* 
+and creates account
+
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
 ##### Logout flow
