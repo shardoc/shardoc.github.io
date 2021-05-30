@@ -61,6 +61,19 @@ then go to *step2*
 and creates account. 
 3. Password must be encrypted on db.
 
+###### Classes
+  * Name: Account
+  * Fields:
+
+           * id 
+           * firstName
+           * lastName
+           * login
+           * password
+           * email
+           * createTime
+           * updateTime
+
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
 ##### Logout flow
