@@ -26,9 +26,8 @@ Value: Bearer xxxxxx
 
 where xxxxxx is jwt token 
 which is generated on successful 
-login request. More information on this topic https://codeburst.io/jwt-authorization-in-flask-c63c1acf4eeb
-
-##### Registration
+login request. More information on this topic https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
+##### Registration flow
 ![Registration flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/registration.png)
 
 ###### We expose two endpoints for registration flow
