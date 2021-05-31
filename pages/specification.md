@@ -26,7 +26,8 @@ login request. More information on this [topic](https://flask-jwt-extended.readt
    * Path: */check*
    * Http method: *POST*
    * Body type: JSON
-   * Body value: *{"email" : "user@email.com"}*
+   * Body fileds:
+   * Body example: *{"email" : "user@email.com"}*
    * Response type: JSON
    * Response example: 
       * available: *{ "status" : "success" }*
@@ -36,8 +37,11 @@ login request. More information on this [topic](https://flask-jwt-extended.readt
    * Path: */register*
    * Http method: *POST*
    * Body type: JSON
-   * Body example: 
-      * success *{ "status" : "sucess", "body" : {"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}}*
+   * Body fileds:
+   * Body example: {"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}
+   * Response type: JSON
+   * Response example:  
+      * success *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
       * failed  *{ "status" : "failed", "body" : ""}*
    
 ###### Steps
@@ -56,8 +60,7 @@ and creates account.
   * Purpose: structure and keep info about user
   * Fields:
     * id 
-    * firstName
-    * lastName
+    * fullName
     * login
     * password
     * email
@@ -72,15 +75,24 @@ and creates account.
   * Methods:
     * checkLogin
     * registerAccount
+    * login
+    * updatePassword
+    * updateProfile
 
 ##### Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
+
+
+#### Change password flow
+
+#### Update profile flow
+
 ##### Logout flow
 Implemented on UI
 ##### Roles
 For now it's flat structure. No roles introduced
 
-#### User profile
+
 
 ### File
 
