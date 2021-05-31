@@ -27,7 +27,8 @@ login request. More information on this [topic](https://flask-jwt-extended.readt
    * Http method: *POST*
    * Body type: JSON
    * Body fileds:
-   * Body example: *{"email" : "user@email.com"}*
+     * ***login*** - **mandatory** parameter
+   * Body example: *{"login" : "user@email.com"}*
    * Response type: JSON
    * Response example: 
       * available: *{ "status" : "success" }*
@@ -38,7 +39,11 @@ login request. More information on this [topic](https://flask-jwt-extended.readt
    * Http method: *POST*
    * Body type: JSON
    * Body fileds:
-   * Body example: {"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}
+     * ***login*** - **mandatory** parameter, could be email
+     * ***password*** - **mandatory** parameter
+     * ***email*** - valid email value in format xxx@xxx.xxx, **mandatory** parameter
+     * *fullName* - optional parameter
+   * Body example: {"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}
    * Response type: JSON
    * Response example:  
       * success *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
