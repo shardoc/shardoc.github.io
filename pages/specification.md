@@ -1,10 +1,10 @@
 [<- to **content**](https://github.com/shardoc/shardoc.github.io)
 
-## Modules
+# Modules
 
-### User
+## User
 
-#### Security (registration/login/logout/roles?)
+### Security (registration/login/logout/roles?)
 
 Security is implemented based on jwt token.
 Each http request to backend 
@@ -17,12 +17,12 @@ Value: Bearer xxxxxx
 where xxxxxx is jwt token 
 which is generated on successful 
 login request. More information on this [topic](https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/)
-##### Registration flow
+#### 1. Registration flow
 ![Registration flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/registration.png)
 
-###### We expose two endpoints for registration flow
+##### We expose two endpoints for registration flow
 
-**1. Check if login is available**
+###### 1.1. Check if login is available
    * Path: */check*
    * Http method: *POST*
    * Body type: JSON
@@ -34,7 +34,7 @@ login request. More information on this [topic](https://flask-jwt-extended.readt
       * available: *{ "status" : "success" }*
       * not available *{ "status" : "failed" }*
    
-**2. Create account**
+###### 1.2. Create account
    * Path: */register*
    * Http method: *POST*
    * Body type: JSON
@@ -49,19 +49,33 @@ login request. More information on this [topic](https://flask-jwt-extended.readt
       * success *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
       * failed  *{ "status" : "failed", "body" : ""}*
    
-###### Steps
-1. User executes request on */check* url 
+##### Steps
+* User executes request on */check* url 
 with required json body. 
 It allows to be sure there is no user 
 with the same login. If login is available 
 then go to *step2*
-2. User executes request on */register* 
+*  User executes request on */register* 
 and creates account. 
-3. Password must be encrypted on db.
+*  Password must be encrypted on db.
 
-###### Classes
-1. 
-  * Name: **Account**
+
+
+#### 2. Login flow
+![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
+
+
+#### 3. Change password flow
+
+#### 4. Update profile flow
+
+#### 5. Logout flow
+Implemented on UI
+#### 6. Roles
+For now it's flat structure. No roles introduced
+
+#### 7. Classes
+7.1. Class **AccountModel**
   * Purpose: structure and keep info about user
   * Fields:
     * id 
@@ -73,9 +87,11 @@ and creates account.
     * updateTime
   * Methods:
     * findByLogin
-    *  
-2. 
-  * Name: **AuthController**
+    * update
+    * insert
+    * delete
+    
+7.2. Class **AuthController**
   * Purpose: describe authentication API
   * Methods:
     * checkLogin
@@ -83,21 +99,6 @@ and creates account.
     * login
     * updatePassword
     * updateProfile
-
-##### Login flow
-![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
-
-
-#### Change password flow
-
-#### Update profile flow
-
-##### Logout flow
-Implemented on UI
-##### Roles
-For now it's flat structure. No roles introduced
-
-
 
 ### File
 
