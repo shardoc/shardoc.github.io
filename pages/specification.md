@@ -82,6 +82,7 @@ We expose one endpoint for login flow
 
 #### 3. Reset password
 
+![Reset password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/resetPassword.png)
 
 
 #### 4. Logout flow
@@ -94,7 +95,11 @@ For now it's flat structure. No roles introduced
 
 #### 1. Change password flow
 
+![Change password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/changePassword.png)
+
 #### 2. Update profile flow
+
+![Update profile flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateProfile.png)
 
 ### Classes
 1. Class **AccountModel**
