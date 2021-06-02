@@ -4,7 +4,7 @@
 
 ## User
 
-### Authentication & Authorization (registration/login/logout/roles?)
+### Authentication & Authorization
 
 
 #### 1. Registration flow
@@ -75,7 +75,7 @@ We expose one endpoint for login flow
 ![Reset password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/resetPassword.png)
 
 ##### Endpoints
-We expose one endpoint for login flow
+We expose one endpoint for reset password flow
 
 ###### 1. Reset password
    * Path: */resetPassword*
@@ -108,9 +108,79 @@ For now it's flat structure. No roles introduced
 
 ![Change password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/changePassword.png)
 
+
+##### Endpoints
+We expose one endpoint for change password flow
+
+###### 1. Change password
+   * Path: */changePassword*
+   * Http method: *POST*
+   * Body type: JSON
+   * Body fileds:
+     * ***oldPassword*** - **mandatory** parameter
+     * ***new password*** -  **mandatory** parameter
+   * Body example: *{"oldPassword" : "hi&7hh4+", "new password" : "jd7_g2$hj"}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
+
+##### Steps
+* User executes request on */changePassword* url 
+with required json body and jwt token on headers/parameters. Application checks if there is such user with given old password. If there is no such user we should send failed response 
+on request and stop execution otherwise proceed to the next step.
+*  Update user profile with new password
+*  Send confirmation email to user
+
 #### 2. Update profile flow
 
 ![Update profile flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateProfile.png)
+
+##### Endpoints
+We expose one endpoint for profile updating
+
+###### 1. Update profile
+   * Path: */updateProfile*
+   * Http method: *POST*
+   * Body type: JSON
+   * Body fileds:
+     * *fullName* - optional parameter
+   * Body example: *{"fullName" : "John Smith"}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
+
+##### Steps
+* User executes request on */updateProfile* url 
+with required json body and jwt token on headers
+*  Update user profile with required fields
+
+#### 3. Update space
+
+![Update profile flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateProfile.png)
+
+##### Endpoints
+We expose one endpoint for joining required spaces
+
+###### 1. Update spaces
+   * Path: */updateSpaces*
+   * Http method: *POST*
+   * Body type: JSON
+   * Body fileds:
+     * *spaces* - mandatory parameter
+   * Body example: *{"spaces" : ["hd5h46gh", "hz5h57h"]}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
+
+##### Steps
+* User executes request on */updateSpaces* url 
+with required json body and jwt token on headers. Body field ***spaces*** 
+is array  and could contain from 0 to 5 different spaces
+*  Update user profile with required spaces
+
 
 ### Classes
 1. Class **AccountModel**
@@ -141,7 +211,7 @@ For now it's flat structure. No roles introduced
   * Methods:
     * updatePassword
     * updateProfile
-    * joinSpace
+    * updateSpaces
 
 ### File
 
