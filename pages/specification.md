@@ -4,7 +4,7 @@
 
 ## User
 
-### Security (registration/login/logout/roles?)
+### Authentication & Authorization (registration/login/logout/roles?)
 
 
 #### 1. Registration flow
