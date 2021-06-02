@@ -80,24 +80,31 @@ We expose one endpoint for login flow
       * success: *{ "status" : "success" }*
       * failed: *{ "status" : "failed" }*
 
+#### 3. Reset password
 
-#### 3. Change password flow
 
-#### 4. Update profile flow
 
-#### 5. Logout flow
+#### 4. Logout flow
 Implemented on UI
-#### 6. Roles
+
+#### 5. Roles
 For now it's flat structure. No roles introduced
 
-#### 7. Classes
-7.1. Class **AccountModel**
+### Profile management
+
+#### 1. Change password flow
+
+#### 2. Update profile flow
+
+### Classes
+1. Class **AccountModel**
   * Purpose: structure and keep info about user
   * Fields:
     * id 
     * fullName
     * login
     * password
+    * spaces[]
     * createTime
     * updateTime
   * Methods:
@@ -106,14 +113,19 @@ For now it's flat structure. No roles introduced
     * insert
     * delete
     
-7.2. Class **AuthController**
+2. Class **AuthController**
   * Purpose: describe authentication API
   * Methods:
     * checkLogin
     * registerAccount
     * login
+
+3. Class **AccountController**
+  * Purpose: describe authentication API
+  * Methods:
     * updatePassword
     * updateProfile
+    * joinSpace
 
 ### File
 
