@@ -20,34 +20,34 @@ login request. More information on this [topic](https://flask-jwt-extended.readt
 #### 1. Registration flow
 ![Registration flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/registration.png)
 
-##### We expose two endpoints for registration flow
+##### Endpoints
+We expose two endpoints for registration flow
 
-###### 1.1. Check if login is available
+###### 1. Check if login is available
    * Path: */check*
    * Http method: *POST*
    * Body type: JSON
    * Body fileds:
-     * ***login*** - **mandatory** parameter
+     * ***login*** - **mandatory** parameter, must be valid email
    * Body example: *{"login" : "user@email.com"}*
    * Response type: JSON
    * Response example: 
       * available: *{ "status" : "success" }*
-      * not available *{ "status" : "failed" }*
+      * not available: *{ "status" : "failed" }*
    
-###### 1.2. Create account
+###### 2. Create account
    * Path: */register*
    * Http method: *POST*
    * Body type: JSON
    * Body fileds:
-     * ***login*** - **mandatory** parameter, could be email
+     * ***login*** - **mandatory** parameter, must be valid email
      * ***password*** - **mandatory** parameter
-     * ***email*** - valid email value in format xxx@xxx.xxx, **mandatory** parameter
      * *fullName* - optional parameter
    * Body example: {"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}
    * Response type: JSON
    * Response example:  
-      * success *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
-      * failed  *{ "status" : "failed", "body" : ""}*
+      * success: *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
+      * failed:  *{ "status" : "failed", "body" : ""}*
    
 ##### Steps
 * User executes request on */check* url 
@@ -63,6 +63,22 @@ and creates account.
 
 #### 2. Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
+
+##### Endpoints
+We expose one endpoint for login flow
+
+###### 1. Login user
+   * Path: */login*
+   * Http method: *POST*
+   * Body type: JSON
+   * Body fileds:
+     * ***login*** - **mandatory** parameter
+     * ***password*** - **mandatory** parameter
+   * Body example: *{"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
 
 
 #### 3. Change password flow
@@ -82,7 +98,6 @@ For now it's flat structure. No roles introduced
     * fullName
     * login
     * password
-    * email
     * createTime
     * updateTime
   * Methods:
