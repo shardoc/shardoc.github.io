@@ -181,6 +181,10 @@ with required json body and jwt token on headers. Body field ***spaces***
 is array  and could contain from 0 to 5 different spaces
 *  Update user profile with required spaces id
 
+#### Close account
+We expose two endpoints for closing account
+###### 1. Close account request
+###### 2. Confirm account closing
 
 ### Classes
 1. Class **AccountModel**
