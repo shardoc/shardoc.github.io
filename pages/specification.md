@@ -156,7 +156,7 @@ We expose one endpoint for profile updating
 with required json body and jwt token on headers
 *  Update user profile with required fields
 
-#### 3. Update space
+#### 3. Update spaces
 
 ![Update profile flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateProfile.png)
 
@@ -179,7 +179,7 @@ We expose one endpoint for joining required spaces
 * User executes request on */updateSpaces* url 
 with required json body and jwt token on headers. Body field ***spaces*** 
 is array  and could contain from 0 to 5 different spaces
-*  Update user profile with required spaces
+*  Update user profile with required spaces id
 
 
 ### Classes
