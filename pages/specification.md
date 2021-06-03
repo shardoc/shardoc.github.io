@@ -158,7 +158,7 @@ with required json body and jwt token on headers
 
 #### 3. Update spaces
 
-![Update profile flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateProfile.png)
+![Update spaces flow sequence diagram]()
 
 ##### Endpoints
 We expose one endpoint for joining required spaces
