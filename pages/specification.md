@@ -178,7 +178,7 @@ We expose one endpoint for joining required spaces
 ##### Steps
 * User executes request on */updateSpaces* url 
 with required json body and jwt token on headers. Body field ***spaces*** 
-is array  and could contain from 0 to 5 different spaces
+is array  and could contain between 1 and 5 different spaces (more for paid accounts)
 *  Update user profile with required spaces id
 
 #### Close account
@@ -201,7 +201,7 @@ We expose two endpoints for closing account
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */closeAccount url
+* User executes request on */closeAccount* url
 * Application changes account status to *suspended*
 and send confirmation email with confirmation and rejection urls 
 * User either confirm or reject closing account
@@ -217,7 +217,7 @@ and send confirmation email with confirmation and rejection urls
     * fullName
     * login
     * password
-    * spaces[]
+    * spaces[] - by default this list contains *global* space, max number of spaces is 5 (*global* + 4 custom)
     * status - possible values: pending, active, suspended, closed
     * createTime
     * updateTime
