@@ -29,7 +29,7 @@ We expose two endpoints for registration flow
    * Path: */register*
    * Http method: *POST*
    * Body type: JSON
-   * Body fileds:
+   * Body fields:
      * ***login*** - **mandatory** parameter, must be valid email
      * ***password*** - **mandatory** parameter
      * *fullName* - optional parameter
@@ -61,7 +61,7 @@ We expose one endpoint for login flow
    * Path: */login*
    * Http method: *POST*
    * Body type: JSON
-   * Body fileds:
+   * Body fields:
      * ***login*** - **mandatory** parameter
      * ***password*** - **mandatory** parameter
    * Body example: *{"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}*
@@ -81,7 +81,7 @@ We expose one endpoint for reset password flow
    * Path: */resetPassword*
    * Http method: *POST*
    * Body type: JSON
-   * Body fileds:
+   * Body fields:
      * ***login*** - **mandatory** parameter
    * Body example: *{"login" : "user@email.com"}*
    * Response type: JSON
@@ -116,7 +116,7 @@ We expose one endpoint for change password flow
    * Path: */changePassword*
    * Http method: *POST*
    * Body type: JSON
-   * Body fileds:
+   * Body fields:
      * ***oldPassword*** - **mandatory** parameter
      * ***new password*** -  **mandatory** parameter
    * Body example: *{"oldPassword" : "hi&7hh4+", "new password" : "jd7_g2$hj"}*
@@ -143,7 +143,7 @@ We expose one endpoint for profile updating
    * Path: */updateProfile*
    * Http method: *POST*
    * Body type: JSON
-   * Body fileds:
+   * Body fields:
      * *fullName* - optional parameter
    * Body example: *{"fullName" : "John Smith"}*
    * Response type: JSON
@@ -167,7 +167,7 @@ We expose one endpoint for joining required spaces
    * Path: */updateSpaces*
    * Http method: *POST*
    * Body type: JSON
-   * Body fileds:
+   * Body fields:
      * *spaces* - mandatory parameter
    * Body example: *{"spaces" : ["hd5h46gh", "hz5h57h"]}*
    * Response type: JSON
@@ -183,8 +183,31 @@ is array  and could contain from 0 to 5 different spaces
 
 #### Close account
 We expose two endpoints for closing account
+
 ###### 1. Close account request
+   * Path: */closeAccount*
+   * Http method: *DELETE*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
+
 ###### 2. Confirm account closing
+   * Path: */closeAccountConfirmation/{yes/no}*
+   * Http method: *DELETE*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
+
+##### Steps
+* User executes request on */closeAccount url
+* Application changes account status to *suspended*
+and send confirmation email with confirmation and rejection urls 
+* User either confirm or reject closing account
+* If user confirmed closing account then application delete all account information
+* If user rejected closing account status should be changed back to active
+* If user ignores confirmation email... What should we do?
 
 ### Classes
 1. Class **AccountModel**
@@ -195,6 +218,7 @@ We expose two endpoints for closing account
     * login
     * password
     * spaces[]
+    * status - possible values: pending, active, suspended, closed
     * createTime
     * updateTime
   * Methods:
@@ -216,6 +240,7 @@ We expose two endpoints for closing account
     * updatePassword
     * updateProfile
     * updateSpaces
+    * closeAccount
 
 ### File
 
