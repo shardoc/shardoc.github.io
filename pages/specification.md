@@ -158,7 +158,7 @@ with required json body and jwt token on headers
 
 #### 3. Update spaces
 
-![Update spaces flow sequence diagram]()
+![Update spaces flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateSpaces.png)
 
 ##### Endpoints
 We expose one endpoint for joining required spaces
@@ -182,6 +182,9 @@ is array  and could contain between 1 and 5 different spaces (more for paid acco
 *  Update user profile with required spaces id
 
 #### Close account
+
+![Close account flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/closeAccount.png)
+
 We expose two endpoints for closing account
 
 ###### 1. Close account request
@@ -217,7 +220,7 @@ and send confirmation email with confirmation and rejection urls
     * fullName
     * login
     * password
-    * spaces[] - by default this list contains *global* space, max number of spaces is 5 (*global* + 4 custom)
+    * spaces[] - by default this list contains only *global* space, max number of spaces is 5
     * status - possible values: pending, active, suspended, closed
     * createTime
     * updateTime
