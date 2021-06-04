@@ -231,7 +231,7 @@ and send confirmation email with confirmation and rejection urls
   <details>
   <summary>AccountModel Class</summary>
 
-  * Purpose: structure and keep info about user
+  * Purpose: keep user info structure and corresponding db methods
   * Fields:
     * id 
     * fullName
@@ -269,15 +269,38 @@ and send confirmation email with confirmation and rejection urls
     * closeAccount
 </details>
 
-## File Module (to be defined)
+## Document Module (to be defined)
 
-### File storage
+### Document storing
 
-### File analyzer
+### Document search & advices
 
-### File search & advices
+### Document sharing
 
-### File sharing
+### Document analyzer
+
+### Classes
+   <details>
+  <summary>Document Class</summary>
+  
+  * Purpose: keep document info structure and corresponding db methods
+  * Fields:
+    * id 
+    * fileName
+    * notes[] - id values of corresponding note records
+    * tags[] - string values
+    * spaces[] - by default this list contains only *global* space, max number of spaces is 5
+    * content
+    * createTime
+    * updateTime
+  * Methods:
+    * findById
+    * update
+    * insert
+    * delete
+
+    </details>
+
 
 ## Communication Module (to be defined)
 
