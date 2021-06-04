@@ -7,7 +7,9 @@
 ### Authentication & Authorization
 
 
-#### 1. Registration flow
+<details>
+  <summary>Registration flow</summary>
+  
 ![Registration flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/registration.png)
 
 ##### Endpoints
@@ -49,9 +51,10 @@ then go to the next step
 and creates account. 
 *  Password must be encrypted on db.
 
+</details>
+<details>
+  <summary>Login flow</summary>
 
-
-#### 2. Login flow
 ![Login flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/login.png)
 
 ##### Endpoints
@@ -70,7 +73,9 @@ We expose one endpoint for login flow
       * success: *{ "status" : "success" }*
       * failed: *{ "status" : "failed" }*
 
-#### 3. Reset password
+  </details>
+<details>
+  <summary>Reset password</summary>
 
 ![Reset password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/resetPassword.png)
 
@@ -95,16 +100,18 @@ on request and stop execution otherwise proceed to the next steps
 *  Application sends email to user with reset password url which leads to [changePassword API](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/specification.md#1-change-password-flow)
 *  Send positive response on initial request
 *  To change pasword user should proceed with [changePassword API](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/specification.md#1-change-password-flow) with the help of url from email
+  </details>
+<details>
+  <summary>Logout flow</summary>
 
-#### 4. Logout flow
 Implemented on UI
+  </details>
 
-#### 5. Roles
-For now it's flat structure. No roles introduced
 
 ### Profile management
 
-#### 1. Change password flow
+<details>
+  <summary>Change password flow</summary>
 
 ![Change password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/changePassword.png)
 
@@ -132,7 +139,9 @@ on request and stop execution otherwise proceed to the next step.
 *  Update user profile with new password
 *  Send confirmation email to user
 
-#### 2. Update profile flow
+  </details>
+  <details>
+  <summary>Update profile flow</summary>
 
 ![Update profile flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateProfile.png)
 
@@ -156,7 +165,9 @@ We expose one endpoint for profile updating
 with required json body and jwt token on headers
 *  Update user profile with required fields
 
-#### 3. Update spaces
+  </details>
+  <details>
+  <summary>Update spaces</summary>
 
 ![Update spaces flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateSpaces.png)
 
@@ -181,7 +192,9 @@ with required json body and jwt token on headers. Body field ***spaces***
 is array  and could contain between 1 and 5 different spaces (more for paid accounts)
 *  Update user profile with required spaces id
 
-#### Close account
+  </details>
+  <details>
+  <summary>Close account</summary>
 
 ![Close account flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/closeAccount.png)
 
@@ -212,7 +225,10 @@ and send confirmation email with confirmation and rejection urls
 * If user rejected closing account status should be changed back to active
 * If user ignores confirmation email... What should we do?
 
-### Classes
+  </details>
+  <details>
+  <summary>Classes</summary>
+
 1. Class **AccountModel**
   * Purpose: structure and keep info about user
   * Fields:
@@ -244,6 +260,7 @@ and send confirmation email with confirmation and rejection urls
     * updateProfile
     * updateSpaces
     * closeAccount
+</details>
 
 ### File
 
@@ -259,12 +276,3 @@ and send confirmation email with confirmation and rejection urls
 
 ### Payment flow
 
-<details>
-  <summary>Click to expand!</summary>
-  
-  ## Heading
-  1. A numbered
-  2. list
-     * With some
-     * Sub bullets
-</details>
