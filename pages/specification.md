@@ -226,10 +226,11 @@ and send confirmation email with confirmation and rejection urls
 * If user ignores confirmation email... What should we do?
 
   </details>
+  
+  ### Classes
   <details>
-  <summary>Classes</summary>
+  <summary>AccountModel Class</summary>
 
-1. Class **AccountModel**
   * Purpose: structure and keep info about user
   * Fields:
     * id 
@@ -246,14 +247,20 @@ and send confirmation email with confirmation and rejection urls
     * insert
     * delete
     
-2. Class **AuthController**
+  </details>
+   <details>
+  <summary>AuthController Class</summary>
+  
   * Purpose: describe authentication API
   * Methods:
     * checkLogin
     * registerAccount
     * login
 
-3. Class **AccountController**
+    </details>
+   <details>
+  <summary>AccountController Class</summary>
+  
   * Purpose: describe authentication API
   * Methods:
     * updatePassword
