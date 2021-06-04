@@ -258,3 +258,13 @@ and send confirmation email with confirmation and rejection urls
 ### Communication
 
 ### Payment flow
+
+<details>
+  <summary>Click to expand!</summary>
+  
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
