@@ -2,7 +2,7 @@
 
 # Modules
 
-## User
+## Account Module
 
 ### Authentication & Authorization
 
@@ -262,17 +262,17 @@ and send confirmation email with confirmation and rejection urls
     * closeAccount
 </details>
 
-### File
+## File Module
 
-#### File storage
+### File storage
 
-#### File analyzer
+### File analyzer
 
-#### File search & advices
+### File search & advices
 
-#### File sharing
+### File sharing
 
-### Communication
+## Communication Module
 
-### Payment flow
+## Payment Module
 
