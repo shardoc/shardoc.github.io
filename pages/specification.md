@@ -262,7 +262,7 @@ and send confirmation email with confirmation and rejection urls
     * closeAccount
 </details>
 
-## File Module
+## File Module (to be defined)
 
 ### File storage
 
@@ -272,7 +272,8 @@ and send confirmation email with confirmation and rejection urls
 
 ### File sharing
 
-## Communication Module
+## Communication Module (to be defined)
 
-## Payment Module
+## Payment Module (to be defined)
+
 
