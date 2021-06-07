@@ -15,3 +15,5 @@ Use can share file for free or ask payment.
 * ### [Specification](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/specification.md)
 * ### [Database](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/db.md)
 * ### [Security](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/security.md)
+* ### Marketing
+Scrap djinny(LinkedIn?)
