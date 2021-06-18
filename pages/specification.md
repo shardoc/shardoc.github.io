@@ -2,10 +2,10 @@
 
 # Modules
 
-## [Account Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/accountModule.md)
+## [Account Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/accountModule.md)
 
 
-## [Document Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/documentModule.md)
+## [Document Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/documentModule.md)
 
 
 ## Communication Module (to be defined)
