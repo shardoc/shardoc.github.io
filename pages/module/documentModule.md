@@ -4,37 +4,45 @@
 
 
 <details>
-  <summary>Document storing</summary>
+  <summary>Document storing (in process)</summary>
 
-![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/documentStoring.png)
+![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocument.png)
 
-We expose two endpoints for Document storing
+We expose one endpoint for Document storing
 
 ###### 1. Create record
    * Path: */createDocument*
    * Http method: *POST*
+   * Body type: *FormData*
+   * Body example: *document:{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]},
+                    files :<fileData>*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
       * failed: *{ "status" : "failed" }*
+	  ##### Steps
+* User executes request on */createDocument* url
+* 
+</details>
+<details>
+  <summary>Attach File</summary>
 
-###### 2. Upload file
+![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFile.png)
+We expose one endpoint for attaching file to existing document
+###### 1. Attach file
    * Path: */upload/{documentId}*
    * Http method: *POST*
+   * Body type: *FormData*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success" }*
+      * success: *{ "status" : "sucess"}
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */closeAccount* url
-* Application changes account status to *suspended*
-and send confirmation email with confirmation and rejection urls 
-* User either confirm or reject closing account
-* If user confirmed closing account then application delete all account information
-* If user rejected closing account status should be changed back to active
-* If user ignores confirmation email... What should we do?
+* xxx
 
+***Additional Info***
+[upload file in flask](https://pythonbasics.org/flask-upload-file/)
   </details>
 ### Document search & advices
 
@@ -49,7 +57,7 @@ and send confirmation email with confirmation and rejection urls
   * Purpose: keep document info structure and corresponding db methods
   * Fields:
     * id 
-    * fileName
+    * files[] - list of attached files
     * notes[] - id values of corresponding note records
     * tags[] - string values
     * spaces[] - by default this list contains only *global* space, max number of spaces is 5
