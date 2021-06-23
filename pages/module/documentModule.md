@@ -55,7 +55,7 @@ We expose one endpoint for Document storing
 </details>
 
 <details>
-  <summary>Update document field</summary>
+  <summary>Update Document</summary>
 
 ### Endpoints
 
@@ -83,7 +83,7 @@ We expose one endpoint for updating field on document
 
 </details>
 <details>
-  <summary>Attach Files</summary>
+  <summary>Attach Files to Document</summary>
 
 ### Endpoints
 
@@ -144,19 +144,94 @@ We expose one endpoint for attaching file to existing document
 ***Additional Info***
 [upload file in flask](https://pythonbasics.org/flask-upload-file/)
   </details>
-### Document search & advices
+  <details>
+  <summary>Get Document</summary>
+
+### Endpoints
+
+We expose two endpoints for a fetching documents
+
+#### 1. Get document by id
+   * Path: */document/{documentId}*
+   * Http method: *GET*
+   * URL parameters: *documentId* - value *any valid document id*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : {"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+	  
+#### 2. Get all own documents
+   * Path: */document*
+   * Http method: *GET*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : [{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+
+</details>
+  <details>
+  <summary>Delete Document</summary>
+
+### Endpoints
+
+We expose two endpoints for a removing documents
+
+#### 1. Delete documents by list of id
+   * Path: */document*
+   * Http method: *POST*
+   * Body type: *JSON*
+   * Body example: *{"idList":["id1", "id2", "id3"]}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : {"idList":["id1", "id2", "id3"]}}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+	
+</details>
+<details>
+<summary>Document search & advices</summary>
+  
+### Endpoints
+
+We expose two endpoints for a finding proper documents in user's own document storage or advice apropriate document from other users
+
+
+#### 1. Search own documents by title or tags
+   * Path: */document/search*
+   * Http method: *POST*
+   * Body type: *JSON*
+   * Body example: *{"value":"Lviv Java"}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : [{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+	  
+#### 2. Search documents by title or tags in global area
+   * Path: */document/search/{spaceId}*
+   * Http method: *POST*
+   * URL parameters: *spaceId* - value *any valid id of existing space*
+   * Body type: *JSON*
+   * Body example: *{"value":"Lviv Java"}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName", "title":"masked title"}},{"notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+			  
+
+</details>
 
 ### Document sharing
 
 ### Document analyzer
 
 ### Classes
+
    <details>
   <summary>Document Class</summary>
   
   * Purpose: keep document info structure and corresponding db methods
   * Fields:
     * id 
+	* owner
 	* title
     * files[] - list of attached files
     * notes[] - id values of corresponding note records
@@ -171,4 +246,14 @@ We expose one endpoint for attaching file to existing document
     * insert
     * delete
 
+    </details>
+	
+	<details>
+  <summary>File Class</summary>
+  
+  * Nested class without own id
+  * Purpose: describe attached file
+  * Fields:
+	* fileName
+    * createTime
     </details>
