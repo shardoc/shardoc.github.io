@@ -23,6 +23,7 @@ We expose one endpoint for Document storing
 	  
 #####	 Scenario 1: Create Document with flag force equals false. Success flow.
 	  ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
+	  
 	  ###### Steps
 * User executes request on */document/create/false* url
 * Application checks if there is no already files with the same name attached to other documents
@@ -32,6 +33,7 @@ We expose one endpoint for Document storing
 
 #####	 Scenario 2: Create Document with flag force equals false. Fail flow.
 	  ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
+	  
 	  ###### Steps
 * User executes request on */document/create/false* url
 * Application checks if there is no already files with the same name attached to other documents
@@ -41,6 +43,7 @@ We expose one endpoint for Document storing
 
 #####	 Scenario 3: Create Document with flag force equals true.
 	  ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceTrue.png)
+	  
 	  ###### Steps
 * User executes request on */document/create/true* url
 * Application checks if there is no already files with the same name attached to other documents
@@ -70,6 +73,7 @@ We expose one endpoint for updating field on document
 
 #####	 Scenario 1: Update field.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateDocumentField.png)
+
 ###### Steps
 * User executes request on */document/{documentId}/update* url and pass proper body
 * Application validates data (user can update only visible fields like *title*, *tags*, etc. Except field *files*, that filed has dedicate API method)
@@ -96,6 +100,7 @@ We expose one endpoint for attaching file to existing document
 
 #####	 Scenario 1: Attach file with flag force equals false. Success flow.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseSucces.png)
+
 ###### Steps
 * User executes request on */document/{documentId}/attach/false* url
 * Application checks if there is no already files with the same name attached to other documents
@@ -108,6 +113,7 @@ We expose one endpoint for attaching file to existing document
 	  
 #####	 Scenario 2: Attach file with flag force equals false. Failed flow.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseFail.png)
+
 ###### Steps
 * User executes request on */document/{documentId}/attach/false* url
 * Application checks if there is no already files with the same name attached to other documents
@@ -118,6 +124,7 @@ We expose one endpoint for attaching file to existing document
 
 #####	 Scenario 3: Attach file with flag force equals true.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceTrue.png)
+
 ###### Steps
 * User executes request on */document/{documentId}/attach/true* url
 * Application checks if there is no already files with the same name attached to other documents
