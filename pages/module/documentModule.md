@@ -89,7 +89,7 @@ We expose one endpoint for updating field on document
 
 We expose one endpoint for attaching file to existing document
 
-#### 3. Attach file
+#### 3. Attach files
    * Path: */document/{documentId}/attach/{force}*
    * Http method: *POST*
    * URL parameters: *documentId* - value any valid id; *force* - value *true/false*
@@ -102,7 +102,7 @@ We expose one endpoint for attaching file to existing document
 
 #####	 Scenario 1: Attach file with flag force equals false. Success flow.
 
-![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseSucces.png)
+![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseSuccess.png)
 
 ###### Steps
 * User executes request on */document/{documentId}/attach/false* url
