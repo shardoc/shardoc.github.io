@@ -22,9 +22,9 @@ We expose one endpoint for Document storing
       * failed: *{ "status" : "failed", "error":"duplicates", "body" : {"documents" : [{id:"l93k7df8", "title":"Some other doc"}] }*
 	  
 #####	 Scenario 1: Create Document with flag force equals false. Success flow.
-	  ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
+![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
 	  
-	  ###### Steps
+###### Steps
 * User executes request on */document/create/false* url
 * Application checks if there is no already files with the same name attached to other documents
 * No files with the same name
@@ -32,9 +32,9 @@ We expose one endpoint for Document storing
 * Application saves files on the file system
 
 #####	 Scenario 2: Create Document with flag force equals false. Fail flow.
-	  ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
+![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
 	  
-	  ###### Steps
+###### Steps
 * User executes request on */document/create/false* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
@@ -42,9 +42,10 @@ We expose one endpoint for Document storing
 * Application returns fail response with list of documents which could be duplicates
 
 #####	 Scenario 3: Create Document with flag force equals true.
-	  ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceTrue.png)
+
+![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceTrue.png)
 	  
-	  ###### Steps
+###### Steps
 * User executes request on */document/create/true* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
@@ -72,6 +73,7 @@ We expose one endpoint for updating field on document
       * failed: *{ "status" : "failed", "error":"Cannot update field [title]" }*
 
 #####	 Scenario 1: Update field.
+
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateDocumentField.png)
 
 ###### Steps
@@ -99,6 +101,7 @@ We expose one endpoint for attaching file to existing document
       * failed: *{ "status" : "failed", "error":"duplicates", "body" : {"documents" : [{id:"l93k7df8", "title":"Some other doc"}] }*
 
 #####	 Scenario 1: Attach file with flag force equals false. Success flow.
+
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseSucces.png)
 
 ###### Steps
@@ -112,6 +115,7 @@ We expose one endpoint for attaching file to existing document
 
 	  
 #####	 Scenario 2: Attach file with flag force equals false. Failed flow.
+
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseFail.png)
 
 ###### Steps
@@ -123,6 +127,7 @@ We expose one endpoint for attaching file to existing document
 
 
 #####	 Scenario 3: Attach file with flag force equals true.
+
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceTrue.png)
 
 ###### Steps
