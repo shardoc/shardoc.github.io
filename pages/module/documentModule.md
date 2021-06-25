@@ -205,18 +205,25 @@ We expose two endpoints for a finding proper documents in user's own document st
       * success: *{ "status" : "success", "body" : [{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
-#### 2. Search documents by title or tags in global area
-   * Path: */document/search/{spaceId}*
+#### 2. Advice documents by title or tags in global area
+   * Path: */document/advice*
    * Http method: *POST*
-   * URL parameters: *spaceId* - value *any valid id of existing space*
    * Body type: *JSON*
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName", "title":"masked title"}},{"notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
+      * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName"}, "title":"masked title"},{"owner":{"id":"otherUserId2", "fullName": "otherUserFullName2"}, "title":"masked title2"}]*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 			  
+#####	 Scenario 1: Advice documents
 
+![Advice documents](https://github.com/shardoc/shardoc.github.io/blob/dev/images/adviceDocuments.png)
+
+###### Steps
+* User executes request on */document/advice* url
+* Application get user's spaces
+* Application search for documents on allowed spaces
+* Application prepares documents depends on space visibility rules
 </details>
 
 ### Document sharing
