@@ -12,7 +12,7 @@ We expose one endpoint for Document storing
 #### 1. Create Document
    * Path: */document/create/{force}*
    * Http method: *POST*
-   * URL parameters: *force* - value *true/false*
+   * PATH parameters: *force* - value *true/false*
    * Body type: *FormData*
    * Body example: *document:{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]},
                     files :<fileData>*
@@ -64,7 +64,7 @@ We expose one endpoint for updating field on document
 #### 3. Update Field
    * Path: */document/{documentId}/update*
    * Http method: *POST*
-   * URL parameters: *documentId* - value any valid id
+   * PATH parameters: *documentId* - value any valid id
    * Body type: *JSON*
    * Body example: *{"title":"Updated Title"}*
    * Response type: JSON
@@ -92,7 +92,7 @@ We expose one endpoint for attaching file to existing document
 #### 3. Attach files
    * Path: */document/{documentId}/attach/{force}*
    * Http method: *POST*
-   * URL parameters: *documentId* - value any valid id; *force* - value *true/false*
+   * PATH parameters: *documentId* - value any valid id; *force* - value *true/false*
    * Body type: *FormData*
    * Body example: *files :<fileData>*
    * Response type: JSON
@@ -154,19 +154,21 @@ We expose two endpoints for a fetching documents
 #### 1. Get document by id
    * Path: */document/{documentId}*
    * Http method: *GET*
-   * URL parameters: *documentId* - value *any valid document id*
+   * PATH parameters: *documentId* - value *any valid document id*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Get all own documents
-   * Path: */document*
+   * Path: */document/{page}/{size}*
    * Http method: *GET*
+   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
+   * Notes: Pay attention rpaging should be implemented on repository request
 
 </details>
   <details>
@@ -196,24 +198,28 @@ We expose two endpoints for a finding proper documents in user's own document st
 
 
 #### 1. Search own documents by title or tags
-   * Path: */document/search*
+   * Path: */document/search/{page}/{size}*
    * Http method: *POST*
+   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
+   * Notes: Pay attention rpaging should be implemented on repository request
 	  
 #### 2. Advice documents by title or tags in global area
-   * Path: */document/advice*
+   * Path: */document/advice/{page}/{size}*
    * Http method: *POST*
+   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName"}, "title":"masked title"},{"owner":{"id":"otherUserId2", "fullName": "otherUserFullName2"}, "title":"masked title2"}]*
       * failed: *{ "status" : "failed", "error":"unknown" }*
+   * Notes: Pay attention rpaging should be implemented on repository request
 			  
 #####	 Scenario 1: Advice documents
 
@@ -222,7 +228,7 @@ We expose two endpoints for a finding proper documents in user's own document st
 ###### Steps
 * User executes request on */document/advice* url
 * Application get user's spaces
-* Application search for documents on allowed spaces
+* Application search for documents on allowed spacesS&cur&
 * Application prepares documents depends on space visibility rules
 </details>
 
