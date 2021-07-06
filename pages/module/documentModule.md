@@ -14,7 +14,7 @@ We expose one endpoint for Document storing
    * Http method: *POST*
    * PATH parameters: *force* - value *true/false*
    * Body type: *FormData*
-   * Body example: *document:{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]},
+   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]},
                     files :<fileData>*
    * Response type: JSON
    * Response example: 
@@ -157,7 +157,7 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *documentId* - value *any valid document id*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}}*
+      * success: *{ "status" : "success", "body" : {"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Get all own documents
@@ -166,9 +166,9 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
+      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention rpaging should be implemented on repository request
+   * Notes: Pay attention paging should be implemented on repository request
 
 </details>
   <details>
@@ -205,9 +205,9 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":\["fileName" : "some_cv.pdf"\], "notes":\["given file requires postprocessing"\], "tags":\["healthcare","sale"\], "spaces" : \["global"\]}]}*
+      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention rpaging should be implemented on repository request
+   * Notes: Pay attention paging should be implemented on repository request
 	  
 #### 2. Advice documents by title or tags in global area
    * Path: */document/advice/{page}/{size}*
@@ -219,7 +219,7 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName"}, "title":"masked title"},{"owner":{"id":"otherUserId2", "fullName": "otherUserFullName2"}, "title":"masked title2"}]*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention rpaging should be implemented on repository request
+   * Notes: Pay attention paging should be implemented on repository request
 			  
 #####	 Scenario 1: Advice documents
 
@@ -232,13 +232,76 @@ We expose two endpoints for a finding proper documents in user's own document st
 * Application prepares documents depends on space visibility rules
 </details>
 
-### Document sharing
+
+<details>
+  <summary>Document sharing</summary>
+  
+  ### Endpoints
+  Purpose of current API providing other user access to your document(s). We expose three endpoints: one for requesting document and another two for sharing with or without payment.
+  When user shares his/her document in fact that document will be copied and recepient will be assigned as an owner on document copy!!!
+  
+  
+  #### 1. Request document
+   * Path: */document/share/request*
+   * Http method: *POST*
+   * Body type: *JSON*
+   * Body example: *{"documentIdList":["id1","id2",...,"idN"]}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : {"id" : "khd65dfkld", "status" :"inprogres" "message":"You will receive email from document owner"}}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+	  
+  #### 2. Share with payment
+   * Path: */document/payment/request/{shareRequestId}*
+   * PATH parameters: *shareRequestId* - id of share request 
+   * Http method: *POST*
+   * Body type: *JSON*
+   * Body example: *{"price" :{"amount" : "100", "currency" : "usd"}}*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"inprogres" "message":"You will receive email when payment is completed"}}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+  
+  #### 3. Share without payment
+   * Path: */document/share/{shareRequestId}*
+   * Http method: *GET*
+   * PATH parameters: *shareRequestId* - id of share request 
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"completed" "message":"Documents were shared succesfully"}}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+  
+  
+  </details>
 
 ### Document analyzer
 
 ### Classes
 
    <details>
+  <summary>Document Class</summary>
+  
+  * Purpose: keep document info structure and corresponding db methods
+  * Fields:
+    * id 
+	* owner
+	* title
+    * files[] - list of attached files
+    * notes[] - id values of corresponding note records
+    * tags[] - string values
+    * spaces[] - by default this list contains only *global* space, max number of spaces is 5
+    * content
+    * createTime
+    * updateTime
+  * Methods:
+    * findById
+    * update
+    * insert
+    * delete
+
+    </details>
+	
+	 <details>
   <summary>Document Class</summary>
   
   * Purpose: keep document info structure and corresponding db methods
