@@ -14,7 +14,7 @@
 We expose two endpoints for registration flow
 
 ###### 1. Check if login is available
-   * Path: */check*
+   * Path: */account/check*
    * Http method: *POST*
    * Body type: JSON
    * Body fileds:
@@ -26,7 +26,7 @@ We expose two endpoints for registration flow
       * not available: *{ "status" : "failed" }*
    
 ###### 2. Create account
-   * Path: */register*
+   * Path: */account/register*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -40,12 +40,12 @@ We expose two endpoints for registration flow
       * failed:  *{ "status" : "failed", "body" : ""}*
    
 ##### Steps
-* User executes request on */check* url 
+* User executes request on */account/check* url 
 with required json body. 
 It allows to be sure there is no user 
 with the same login. If login is available 
 then go to the next step
-*  User executes request on */register* 
+*  User executes request on */account/register* 
 and creates account. 
 *  Password must be encrypted on db.
 
@@ -59,7 +59,7 @@ and creates account.
 We expose one endpoint for login flow
 
 ###### 1. Login user
-   * Path: */login*
+   * Path: */account/login*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -81,7 +81,7 @@ We expose one endpoint for login flow
 We expose one endpoint for reset password flow
 
 ###### 1. Reset password
-   * Path: */resetPassword*
+   * Path: */account/resetPassword*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -91,7 +91,7 @@ We expose one endpoint for reset password flow
    * Response example: 
       * success: *{ "status" : "success" }*
 ##### Steps
-* User executes request on */resetPassword* url 
+* User executes request on */account/resetPassword* url 
 with required json body. Application checks if there is such user. If there is no such user we should send positive response 
 on request and stop execution otherwise proceed to the next steps
 *  Application generates jwt token with expiration period 24 hours
@@ -118,7 +118,7 @@ Implemented on UI
 We expose one endpoint for change password flow
 
 ###### 1. Change password
-   * Path: */changePassword*
+   * Path: */account/update/password*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -131,7 +131,7 @@ We expose one endpoint for change password flow
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */changePassword* url 
+* User executes request on */account/update/password* url 
 with required json body and jwt token on headers/parameters. Application checks if there is such user with given old password. If there is no such user we should send failed response 
 on request and stop execution otherwise proceed to the next step.
 *  Update user profile with new password
@@ -147,7 +147,7 @@ on request and stop execution otherwise proceed to the next step.
 We expose one endpoint for profile updating
 
 ###### 1. Update profile
-   * Path: */updateProfile*
+   * Path: */account/update/profile*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -159,7 +159,7 @@ We expose one endpoint for profile updating
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */updateProfile* url 
+* User executes request on */account/update/profile* url 
 with required json body and jwt token on headers
 *  Update user profile with required fields
 
@@ -173,7 +173,7 @@ with required json body and jwt token on headers
 We expose one endpoint for joining required spaces
 
 ###### 1. Update spaces
-   * Path: */updateSpaces*
+   * Path: */account/update/spaces*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -185,7 +185,7 @@ We expose one endpoint for joining required spaces
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */updateSpaces* url 
+* User executes request on */account/update/spaces* url 
 with required json body and jwt token on headers. Body field ***spaces*** 
 is array  and could contain between 1 and 5 different spaces (more for paid accounts)
 *  Update user profile with required spaces id
@@ -199,7 +199,7 @@ is array  and could contain between 1 and 5 different spaces (more for paid acco
 We expose two endpoints for closing account
 
 ###### 1. Close account request
-   * Path: */closeAccount*
+   * Path: */account/close*
    * Http method: *DELETE*
    * Response type: JSON
    * Response example: 
@@ -207,7 +207,7 @@ We expose two endpoints for closing account
       * failed: *{ "status" : "failed" }*
 
 ###### 2. Confirm account closing
-   * Path: */closeAccountConfirmation/{yes/no}*
+   * Path: */account/close/confirmation/{yes/no}*
    * Http method: *DELETE*
    * Response type: JSON
    * Response example: 
@@ -215,7 +215,7 @@ We expose two endpoints for closing account
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */closeAccount* url
+* User executes request on */account/close* url
 * Application changes account status to *suspended*
 and send confirmation email with confirmation and rejection urls 
 * User either confirm or reject closing account
