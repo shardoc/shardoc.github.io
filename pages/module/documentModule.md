@@ -228,7 +228,7 @@ We expose two endpoints for a finding proper documents in user's own document st
 ###### Steps
 * User executes request on */document/advice* url
 * Application get user's spaces
-* Application search for documents on allowed spacesS&cur&
+* Application search for documents on allowed spaces
 * Application prepares documents depends on space visibility rules
 </details>
 
