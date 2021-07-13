@@ -294,8 +294,9 @@ We expose two endpoints for a finding proper documents in user's own document st
 
 <details>
 <summary>Document analyzer</summary>
+
 TBD:  with the help of AI we will analyze content of uploaded document and build some searchable index
-<details>
+</details>
 
 ### Classes
 
