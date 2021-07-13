@@ -11,8 +11,9 @@
 ## [Space Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/spaceModule.md)
 
 
-## Communication Module (to be defined)
+## [Communication Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/communicationModule.md)
 
-## Payment Module (to be defined)
+## [Payment Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/paymentModule.md)
+
 
 

@@ -14,7 +14,7 @@ We expose one endpoint for Document storing
    * Http method: *POST*
    * PATH parameters: *force* - value *true/false*
    * Body type: *FormData*
-   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]},
+   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]},
                     files :<fileData>*
    * Response type: JSON
    * Response example: 
@@ -157,7 +157,7 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *documentId* - value *any valid document id*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]}}*
+      * success: *{ "status" : "success", "body" : {"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Get all own documents
@@ -166,7 +166,7 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
+      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
    * Notes: Pay attention paging should be implemented on repository request
 
@@ -176,7 +176,7 @@ We expose two endpoints for a fetching documents
 
 ### Endpoints
 
-We expose two endpoints for a removing documents
+We expose one endpoint for a removing documents
 
 #### 1. Delete documents by list of id
    * Path: */document*
@@ -205,7 +205,7 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":["given file requires postprocessing"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
+      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
    * Notes: Pay attention paging should be implemented on repository request
 	  
@@ -248,33 +248,54 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Body example: *{"documentIdList":["id1","id2",...,"idN"]}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "khd65dfkld", "status" :"inprogres" "message":"You will receive email from document owner"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "khd65dfkld", "status" :"inprogress" "message":"You will receive email from document owner"}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 2. Share with payment
-   * Path: */document/payment/request/{shareRequestId}*
-   * PATH parameters: *shareRequestId* - id of share request 
+   * Path: */document/payment/request/{shareId}*
+   * PATH parameters: *shareId* - id of share data 
    * Http method: *POST*
    * Body type: *JSON*
    * Body example: *{"price" :{"amount" : "100", "currency" : "usd"}}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"inprogres" "message":"You will receive email when payment is completed"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"requested" "message":"You will receive email when payment is completed"}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
   
   #### 3. Share without payment
-   * Path: */document/share/{shareRequestId}*
+   * Path: */document/share/{shareId}*
    * Http method: *GET*
-   * PATH parameters: *shareRequestId* - id of share request 
+   * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"completed" "message":"Documents were shared succesfully"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"shared" "message":"Documents were shared succesfully"}}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+	  
+  #### 4. Reject document sharing request
+   * Path: */document/share/reject/{shareId}*
+   * Http method: *GET*
+   * PATH parameters: *shareId* - id of share data 
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success"}*
+      * failed: *{ "status" : "failed", "error":"unknown" }*
+	  
+  #### 5. Cancel document sharing request
+   * Path: */document/share/cancel/{shareId}*
+   * Http method: *GET*
+   * PATH parameters: *shareId* - id of share data 
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success"}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
   
   
   </details>
 
-### Document analyzer
+<details>
+<summary>Document analyzer</summary>
+TBD:  with the help of AI we will analyze content of uploaded document and build some searchable index
+<details>
 
 ### Classes
 
@@ -284,10 +305,10 @@ We expose two endpoints for a finding proper documents in user's own document st
   * Purpose: keep document info structure and corresponding db methods
   * Fields:
     * id 
-	* owner
+	* ownerId
 	* title
     * files[] - list of attached files
-    * notes[] - id values of corresponding note records
+    * notes[] - notes added by user
     * tags[] - string values
     * spaces[] - by default this list contains only *global* space, max number of spaces is 5
     * content
@@ -302,25 +323,15 @@ We expose two endpoints for a finding proper documents in user's own document st
     </details>
 	
 	 <details>
-  <summary>Document Class</summary>
+  <summary>Note Class</summary>
   
-  * Purpose: keep document info structure and corresponding db methods
+  * Purpose: keep note structure, could be reused on other modules
   * Fields:
     * id 
-	* owner
-	* title
-    * files[] - list of attached files
-    * notes[] - id values of corresponding note records
-    * tags[] - string values
-    * spaces[] - by default this list contains only *global* space, max number of spaces is 5
-    * content
+	* ownerId
+	* text
     * createTime
     * updateTime
-  * Methods:
-    * findById
-    * update
-    * insert
-    * delete
 
     </details>
 	
@@ -332,4 +343,22 @@ We expose two endpoints for a finding proper documents in user's own document st
   * Fields:
 	* fileName
     * createTime
+    </details>
+	
+	
+	<details>
+ <summary>ShareData Class</summary>
+
+  * Purpose: keep infromation about document sharing
+  * Fields:
+    * id 
+	* ownerId
+	* recipientId
+	* documentId
+	* price 
+	  * amount" 
+	  * currency
+	* status - possible values: *requested*, *canceled*, *priced*, *shared*, *rejected*, *completed*
+    * createTime
+    * updateTime
     </details>
