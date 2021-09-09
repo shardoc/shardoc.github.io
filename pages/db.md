@@ -22,6 +22,18 @@ Shardoc is built on top of [MongoDB](https://www.mongodb.com/) with the help of 
   * corresponding class: **[File](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/documentModule.md#model-description-2)**
   * indexes: tbd
 * #### ShareData Collection
-  * name: **note**
+  * name: **sharedata**
   * corresponding class: **[ShareData](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/documentModule.md#model-description-3)**
+  * indexes: tbd
+* #### Message Collection
+  * name: **message**
+  * corresponding class: **[Message](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/communicationModule.md#classes)**
+  * indexes: tbd
+* #### Payment Collection
+  * name: **payment**
+  * corresponding class: **[Payment](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/paymentModule.md#classes)**
+  * indexes: tbd
+* #### Space Collection
+  * name: **space**
+  * corresponding class: **[Space](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/spaceModule.md#classes)**
   * indexes: tbd
