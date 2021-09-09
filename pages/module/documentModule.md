@@ -303,6 +303,7 @@ TBD:  with the help of AI we will analyze content of uploaded document and build
    <details>
   <summary>Document Class</summary>
   
+#### Model Description
   * Purpose: keep document info structure and corresponding db methods
   * Fields:
     * id 
@@ -326,6 +327,7 @@ TBD:  with the help of AI we will analyze content of uploaded document and build
 	 <details>
   <summary>Note Class</summary>
   
+#### Model Description  
   * Purpose: keep note structure, could be reused on other modules
   * Fields:
     * id 
@@ -349,7 +351,8 @@ TBD:  with the help of AI we will analyze content of uploaded document and build
 	
 	<details>
  <summary>ShareData Class</summary>
-
+  
+#### Model Description
   * Purpose: keep infromation about document sharing
   * Fields:
     * id 
