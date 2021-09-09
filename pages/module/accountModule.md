@@ -227,8 +227,9 @@ and send confirmation email with confirmation and rejection urls
   
   ### Classes
   <details>
-  <summary>AccountModel Class</summary>
-
+    <summary>AccountModel Class</summary>
+ 
+  #### Model Description
   * Purpose: keep user info structure and corresponding db methods
   * Fields:
     * id 
