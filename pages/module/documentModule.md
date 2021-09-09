@@ -341,6 +341,7 @@ TBD:  with the help of AI we will analyze content of uploaded document and build
 	<details>
   <summary>File Class</summary>
   
+#### Model Description  
   * Nested class without own id
   * Purpose: describe attached file
   * Fields:
