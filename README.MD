@@ -15,5 +15,6 @@ Owner can share files for free or ask for a payment.
 * ### [Specification](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/specification.md)
 * ### [Database](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/db.md)
 * ### [Security](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/security.md)
-* ### Marketing
-Scrap djinny(LinkedIn?)
+* ### [User Interface](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/ui.md)
+* ### [Marketing](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/marketing.md)
+
