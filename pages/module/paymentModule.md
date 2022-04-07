@@ -22,6 +22,8 @@ We expose one endpoint for payment on price shared data.
 	  
 </details>
 
+### Classes
+<details>
   <summary>Payment Class</summary>
   
   * Purpose: keep information about payment on share data payment request
