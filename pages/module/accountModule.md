@@ -131,7 +131,7 @@ We expose one endpoint for change password flow
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/update/password* url 
+* User executes request on */account/password/update* url 
 with required json body and jwt token on headers/parameters. Application checks if there is such user with given old password. If there is no such user we should send failed response 
 on request and stop execution otherwise proceed to the next step.
 *  Update user profile with new password
@@ -147,7 +147,7 @@ on request and stop execution otherwise proceed to the next step.
 We expose one endpoint for profile updating
 
 ###### 1. Update profile
-   * Path: */account/update/profile*
+   * Path: */account/profile/update*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -185,7 +185,7 @@ We expose one endpoint for joining required spaces
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/update/spaces* url 
+* User executes request on */account/spaces/update* url 
 with required json body and jwt token on headers. Body field ***spaces*** 
 is array  and could contain between 1 and 5 different spaces (more for paid accounts)
 *  Update user profile with required spaces id
