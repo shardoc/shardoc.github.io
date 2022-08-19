@@ -75,13 +75,14 @@ We expose one endpoint for login flow
 <details>
   <summary>Reset password</summary>
 
-![Reset password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/resetPassword.png)
+![Reset password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/
+  sword.png)
 
 ##### Endpoints
 We expose one endpoint for reset password flow
 
 ###### 1. Reset password
-   * Path: */account/resetPassword*
+   * Path: */account/password/reset*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -91,7 +92,7 @@ We expose one endpoint for reset password flow
    * Response example: 
       * success: *{ "status" : "success" }*
 ##### Steps
-* User executes request on */account/resetPassword* url 
+* User executes request on */account/password/reset* url 
 with required json body. Application checks if there is such user. If there is no such user we should send positive response 
 on request and stop execution otherwise proceed to the next steps
 *  Application generates jwt token with expiration period 24 hours
@@ -118,7 +119,7 @@ Implemented on UI
 We expose one endpoint for change password flow
 
 ###### 1. Change password
-   * Path: */account/update/password*
+   * Path: */account/password/update*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -159,7 +160,7 @@ We expose one endpoint for profile updating
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/update/profile* url 
+* User executes request on */account/profile/update* url 
 with required json body and jwt token on headers
 *  Update user profile with required fields
 
@@ -173,7 +174,7 @@ with required json body and jwt token on headers
 We expose one endpoint for joining required spaces
 
 ###### 1. Update spaces
-   * Path: */account/update/spaces*
+   * Path: */account/spaces/update*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
