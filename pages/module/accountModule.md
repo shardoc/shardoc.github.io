@@ -75,8 +75,7 @@ We expose one endpoint for login flow
 <details>
   <summary>Reset password</summary>
 
-![Reset password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/
-  sword.png)
+![Reset password flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/resetPassword.png)
 
 ##### Endpoints
 We expose one endpoint for reset password flow
