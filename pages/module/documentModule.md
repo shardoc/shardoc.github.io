@@ -248,7 +248,7 @@ We expose two endpoints for a finding proper documents in user's own document st
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 2. Share with payment
-   * Path: */document/payment/request/{shareId}*
+   * Path: */document/share/{shareId}/payment*
    * PATH parameters: *shareId* - id of share data 
    * Http method: *POST*
    * Body type: *JSON*
@@ -268,7 +268,7 @@ We expose two endpoints for a finding proper documents in user's own document st
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 4. Reject document sharing request
-   * Path: */document/share/reject/{shareId}*
+   * Path: */document/share/{shareId}/reject*
    * Http method: *GET*
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
@@ -277,7 +277,7 @@ We expose two endpoints for a finding proper documents in user's own document st
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 5. Cancel document sharing request
-   * Path: */document/share/cancel/{shareId}*
+   * Path: */document/share/{shareId}/cancel*
    * Http method: *GET*
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
