@@ -67,12 +67,12 @@ We expose one endpoint for deleting space
 	
 </details>
 <details>
-  <summary>List Spaces</summary>
+  <summary>Get All Spaces</summary>
 
 ### Endpoints
 We expose one endpoint for Space storing. Any user could create own space and invite any other user.
 
-#### 1. Create Space
+#### 1. Get All Spaces
    * Path: */space*
    * Http method: *GET*
    
