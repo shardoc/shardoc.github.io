@@ -13,7 +13,7 @@ We expose two endpoints for Document storing
    * Path: */document/create/force* or */document/create*
    * Http method: *POST*
    * Body type: *FormData*
-   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]},
+   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":[{"given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]},
                     files :<fileData>*
    * Response type: JSON
    * Response example: 
@@ -290,7 +290,11 @@ We expose two endpoints for a finding proper documents in user's own document st
   
   
   </details>
+<details>
+<summary>Notes API </summary>
 
+TBD:  
+</details>
 <details>
 <summary>Document analyzer</summary>
 
