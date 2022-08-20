@@ -165,30 +165,53 @@ with required json body and jwt token on headers
 
   </details>
   <details>
-  <summary>Update spaces</summary>
+  <summary>Join space</summary>
 
-![Update spaces flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateSpaces.png)
+![Join space flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/ imp should be updated updateSpaces.png)
 
 ##### Endpoints
-We expose one endpoint for joining required spaces
+We expose one endpoint for joining required space
 
-###### 1. Update spaces
-   * Path: */account/spaces/update*
+###### 1. Join space
+   * Path: */account/space/join/{spaceId}*
    * Http method: *POST*
-   * Body type: JSON
-   * Body fields:
-     * *spaces* - mandatory parameter
-   * Body example: *{"spaces" : ["hd5h46gh", "hz5h57h"]}*
+   * Body type: EMPTY
+   * Path params:
+     * *spaceId* - mandatory parameter
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/spaces/update* url 
-with required json body and jwt token on headers. Body field ***spaces*** 
-is array  and could contain between 1 and 5 different spaces (more for paid accounts)
-*  Update user profile with required spaces id
+* User executes request on */account/space/join/{spaceId}* url 
+with required path parameter *spaceId* and jwt token on headers. User could join up to 5 different spaces (more for paid accounts)
+*  Update user profile with required space id
+
+  </details>
+  <details>
+  <summary>Leave space</summary>
+
+![Leave space flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/ imp should be updated updateSpaces.png)
+
+##### Endpoints
+We expose one endpoint for leaving required space
+
+###### 1. Leave space
+   * Path: */account/space/leave/{spaceId}*
+   * Http method: *POST*
+   * Body type: EMPTY
+   * Path params:
+     * *spaceId* - mandatory parameter
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
+
+##### Steps
+* User executes request on */account/space/leave/{spaceId}* url 
+with required path parameter *spaceId* and jwt token on headers. 
+*  Update user profile and remove requested space id
 
   </details>
   <details>
