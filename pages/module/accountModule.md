@@ -37,7 +37,16 @@ We expose two endpoints for registration flow
    * Response type: JSON
    * Response example:  
       * success: *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
-      * failed:  *{ "status" : "failed", "body" : ""}*
+      * failed:  *{ "status" : "failed"}*
+  
+###### 3. Confirm creating account
+   * Path: */account/register/confirm/{accountId}/{yes/no}*
+   * Http method: *POST*
+   * Body type: EMPTY
+   * Response type: JSON
+   * Response example:  
+      * success: *{ "status" : "sucess"}*
+      * failed:  *{ "status" : "failed"}*
    
 ##### Steps
 * User executes request on */account/check* url 
@@ -48,6 +57,8 @@ then go to the next step
 *  User executes request on */account/register* 
 and creates account. 
 *  Password must be encrypted on db.
+* User receives email with confirmation url
+* User executes call on confirmation or declining url */account/register/confirm/{accountId}/{yes/no}*
 
 </details>
 <details>
@@ -223,7 +234,7 @@ We expose two endpoints for closing account
 
 ###### 1. Close account request
    * Path: */account/close*
-   * Http method: *DELETE*
+   * Http method: *POST*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
@@ -231,7 +242,7 @@ We expose two endpoints for closing account
 
 ###### 2. Confirm account closing
    * Path: */account/close/confirmation/{yes/no}*
-   * Http method: *DELETE*
+   * Http method: *POST*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
