@@ -39,8 +39,8 @@ We expose two endpoints for registration flow
       * success: *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
       * failed:  *{ "status" : "failed"}*
   
-###### 3. Confirm creating account
-   * Path: */account/register/confirm/{accountId}/{yes/no}*
+###### 3. Confirm account registration
+   * Path: */account/{accountId}/confirm/{yes/no}*
    * Http method: *POST*
    * Body type: EMPTY
    * Response type: JSON
@@ -58,7 +58,7 @@ then go to the next step
 and creates account. 
 *  Password must be encrypted on db.
 * User receives email with confirmation url
-* User executes call on confirmation or declining url */account/register/confirm/{accountId}/{yes/no}*
+* User executes call on confirmation or declining url */account/{accountId}/confirm/{yes/no}*
 
 </details>
 <details>
