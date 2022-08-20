@@ -28,7 +28,7 @@ We expose one endpoint for Space storing. Any user could create own space and in
 
 We expose one endpoint for updating field on space
 
-#### 3. Update Field
+#### 1. Update Field
    * Path: */space/{spaceId}*
    * Http method: *POST*
    * PATH parameters: *spaceId* - value any valid id
@@ -50,8 +50,20 @@ We expose one endpoint for updating field on space
   <summary>Delete Space</summary>
 
 ### Endpoints
+We expose one endpoint for deleting space
 
-It's not possible to delete space. Space belongs to all space members
+#### 1. Delete Space
+   * Path: */space/{spaceId}*
+   * Http method: *DELETE*
+   * PATH parameters: *spaceId* - value any valid id
+   * Body type: *EMPTY*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "sucess" }
+      * failed: *{ "status" : "failed", "error":"Cannot delete space" }*
+	#####	 Comments
+* You could delete only empty space without members
+	
 	
 </details>
 <details>
