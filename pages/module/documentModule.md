@@ -7,12 +7,11 @@
   <summary>Document storing</summary>
 
 ### Endpoints
-We expose one endpoint for Document storing
+We expose two endpoints for Document storing
 
 #### 1. Create Document
-   * Path: */document/create/{force}*
+   * Path: */document/create/force* or */document/create*
    * Http method: *POST*
-   * PATH parameters: *force* - value *true/false*
    * Body type: *FormData*
    * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]},
                     files :<fileData>*
@@ -21,32 +20,32 @@ We expose one endpoint for Document storing
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
       * failed: *{ "status" : "failed", "error":"duplicates", "body" : {"documents" : [{id:"l93k7df8", "title":"Some other doc"}] }*
 	  
-#####	 Scenario 1: Create Document with flag force equals false. Success flow.
+#####	 Scenario 1: Create Document without flag force. Success flow.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
 	  
 ###### Steps
-* User executes request on */document/create/false* url
+* User executes request on */document/create* url
 * Application checks if there is no already files with the same name attached to other documents
 * No files with the same name
 * Application creates document based on JSON from field ***document***
 * Application saves files on the file system
 
-#####	 Scenario 2: Create Document with flag force equals false. Fail flow.
+#####	 Scenario 2: Create Document without flag force. Fail flow.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
 	  
 ###### Steps
-* User executes request on */document/create/false* url
+* User executes request on */document/create* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Application finds documents with attached files with the same name
 * Application returns fail response with list of documents which could be duplicates
 
-#####	 Scenario 3: Create Document with flag force equals true.
+#####	 Scenario 3: Create Document with flag force.
 
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceTrue.png)
 	  
 ###### Steps
-* User executes request on */document/create/true* url
+* User executes request on */document/create/force* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Rename file with help of proper ending line file_1.pdf, file_2.pdf
