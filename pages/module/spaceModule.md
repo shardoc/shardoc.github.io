@@ -13,7 +13,7 @@ We expose one endpoint for Space storing. Any user could create own space and in
    * Path: */space/create*
    * Http method: *POST*
    * Body type: *JSON*
-   * Body example: *{"title":"Lviv group", "note":[{"id":"1", "created for a reason"}], "visibility":"searchable", "accessibility":"public"}*
+   * Body example: *{"title":"Lviv group", "visibility":"searchable", "accessibility":"public"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
@@ -98,7 +98,6 @@ We expose one endpoint for Space storing. Any user could create own space and in
     * id 
 	* ownerId
 	* title
-    * notes[] - id values of corresponding note records
 	* visibility - possible values: *searchable* (space memebers could find document by keywords but content and attachment are not visible), *visible*  (space memebers have full access to document)
 	* accessibility - possible values: *public* (anybody could join space), *private* - (only invited user could join space)
     * createTime
