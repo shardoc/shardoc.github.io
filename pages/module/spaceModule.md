@@ -72,7 +72,7 @@ We expose one endpoint for Space storing. Any user could create own space and in
 </details>
 
 <details>
-  <summary>Get Space be id</summary>
+  <summary>Get Space by id</summary>
 
 ### Endpoints
 We expose one endpoint for Space storing. Any user could create own space and invite any other user.
