@@ -13,7 +13,7 @@ We expose two endpoints for Document storing
    * Path: */document/create/force* and */document/create*
    * Http method: *POST*
    * Body type: *FormData*
-   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":[{"given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]},
+   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]},
                     files :<fileData>*
    * Response type: JSON
    * Response example: 
