@@ -73,9 +73,9 @@ We expose one endpoint for deleting space
 We expose one endpoint for Space storing. Any user could create own space and invite any other user.
 
 #### 1. Get All Spaces
-   * Path: */space*
+   * Path: */space/{page}/{size}*
    * Http method: *GET*
-   
+   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"id" : "l93k7df8", "title" :"mySpace1"}, {"id" : "f93kvc7df8", "title" :"mySpace2"}]}*
