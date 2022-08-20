@@ -86,12 +86,12 @@ We expose one endpoint for updating field on document
 
 ### Endpoints
 
-We expose one endpoint for attaching file to existing document
+We expose two endpoints for attaching file to existing document
 
 #### 3. Attach files
-   * Path: */document/{documentId}/attach/{force}*
+   * Path: */document/{documentId}/attach/force* and */document/{documentId}/attach*
    * Http method: *POST*
-   * PATH parameters: *documentId* - value any valid id; *force* - value *true/false*
+   * PATH parameters: *documentId* - value any valid id
    * Body type: *FormData*
    * Body example: *files :<fileData>*
    * Response type: JSON
@@ -104,7 +104,7 @@ We expose one endpoint for attaching file to existing document
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseSuccess.png)
 
 ###### Steps
-* User executes request on */document/{documentId}/attach/false* url
+* User executes request on */document/{documentId}/attach* url
 * Application checks if there is no already files with the same name attached to other documents
 * No files with the same name
 * Application saves files on the file system
@@ -118,7 +118,7 @@ We expose one endpoint for attaching file to existing document
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseFail.png)
 
 ###### Steps
-* User executes request on */document/{documentId}/attach/false* url
+* User executes request on */document/{documentId}/attach* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Application finds documents with attached files with the same name
@@ -130,7 +130,7 @@ We expose one endpoint for attaching file to existing document
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceTrue.png)
 
 ###### Steps
-* User executes request on */document/{documentId}/attach/true* url
+* User executes request on */document/{documentId}/attach/force* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Rename file with help of proper ending line file_1.pdf, file_2.pdf
