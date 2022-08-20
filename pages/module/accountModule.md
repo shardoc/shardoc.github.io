@@ -250,7 +250,14 @@ We expose two endpoints for closing account
       * failed: *{ "status" : "failed" }*
 
 ###### 2. Confirm account closing
-   * Path: */account/close/confirmation/{yes/no}*
+   * Path: */account/close/confirm*
+   * Http method: *POST*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "success" }*
+      * failed: *{ "status" : "failed" }*
+###### 3. Confirm account closing
+   * Path: */account/close/decline*
    * Http method: *POST*
    * Response type: JSON
    * Response example: 
