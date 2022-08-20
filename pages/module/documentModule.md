@@ -156,7 +156,7 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *documentId* - value *any valid document id*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}}*
+      * success: *{ "status" : "success", "body" : {"files":["fileName" : "some_cv.pdf"]"tags":["healthcare","sale"], "spaces" : ["global"]}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Get all own documents
@@ -165,9 +165,8 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
+      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention paging should be implemented on repository request
 
 </details>
   <details>
@@ -204,9 +203,8 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
+      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention paging should be implemented on repository request
 	  
 #### 2. Advice documents by title or tags in global area
    * Path: */document/advice/{page}/{size}*
@@ -218,7 +216,6 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName"}, "title":"masked title"},{"owner":{"id":"otherUserId2", "fullName": "otherUserFullName2"}, "title":"masked title2"}]*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention paging should be implemented on repository request
 			  
 #####	 Scenario 1: Advice documents
 
