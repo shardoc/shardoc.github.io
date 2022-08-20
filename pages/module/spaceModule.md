@@ -29,7 +29,7 @@ We expose one endpoint for Space storing. Any user could create own space and in
 We expose one endpoint for updating field on space
 
 #### 3. Update Field
-   * Path: */space/{spaceId}/update*
+   * Path: */space/{spaceId}*
    * Http method: *POST*
    * PATH parameters: *spaceId* - value any valid id
    * Body type: *JSON*
