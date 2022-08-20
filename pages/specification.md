@@ -11,7 +11,7 @@
 ## [Space Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/spaceModule.md)
 
 
-## [Notes Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/notesModule.md)
+## [Note Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/noteModule.md)
 
 
 ## [Communication Module ->](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/module/communicationModule.md)
