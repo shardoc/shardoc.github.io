@@ -89,7 +89,7 @@ We expose one endpoint for Space storing. Any user could create own space and in
 ### Endpoints
 We expose one endpoint for Space storing. Any user could create own space and invite any other user.
 
-#### 1. Create Space
+#### 1. Get Space
    * Path: */space/spaceId*
    * Http method: *GET*
    * PATH parameters: *spaceId* - value any valid id
