@@ -70,7 +70,7 @@ We expose one endpoint for Notes fetching.
    * Http method: *POST*
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
-   * Body example: *{"entityId":"dhkfd", "entityType":"document", "content":"some note on entity"}*
+   * Body example: *{"entityId":"dhkfd", "entityType":"document"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"id" : "l93k7df8", "content" :"myNote1", "visibililty" : "private", "ownerId" :"dgferdf",  "createdBy":"me", "createTime" : "2022-06-13 20:00:10}, {"id" : "f93kvc7df8", "content" :"note for entity 2", "visibility" : "public", "ownerId" :"dgfdf", "createdBy" : "somebodyelse", "createTime" : "2022-06-13 20:30:10}]}*
