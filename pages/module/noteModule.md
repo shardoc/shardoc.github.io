@@ -13,11 +13,11 @@ We expose one endpoint for Note adding. This feature is used for adding notes on
    * Path: */note/create*
    * Http method: *POST*
    * Body type: *JSON*
-   * Body example: *{"entityId":"dhkfd", "entityType":"document"}*
+   * Body example: *{"entityId":"dhkfd", "entityType":"document", "content":"some comment on entity", "visibility':"private"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
-      * failed: *{ "status" : "failed", "error":"title should be unque"}*
+      * failed: *{ "status" : "failed", "error":"there is no such entity"}*
 	  
 </details>
 
@@ -70,7 +70,7 @@ We expose one endpoint for Notes fetching.
    * Http method: *POST*
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
-   * Body example: *{"entityId":"dhkfd", "entityType":"document"}*
+   * Body example: *{"entityId":"dhkfd", "entityType":"document", "content":"some note on entity"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"id" : "l93k7df8", "title" :"myNote1"}, {"id" : "f93kvc7df8", "title" :"mySpace2"}]}*
