@@ -40,7 +40,7 @@ We expose two endpoints for registration flow
       * failed:  *{ "status" : "failed"}*
   
 ###### 3. Confirm account registration
-   * Path: */account/{accountId}/confirm*
+   * Path: */account/confirm*
    * Http method: *POST*
    * Body type: EMPTY
    * Response type: JSON
@@ -49,7 +49,7 @@ We expose two endpoints for registration flow
       * failed:  *{ "status" : "failed"}*
   
 ###### 4. Decline account registration
-   * Path: */auth/{accountId}/decline*
+   * Path: */account/decline*
    * Http method: *POST*
    * Body type: EMPTY
    * Response type: JSON
