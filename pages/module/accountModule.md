@@ -40,8 +40,9 @@ We expose two endpoints for registration flow
       * failed:  *{ "status" : "failed"}*
   
 ###### 3. Confirm account registration
-   * Path: */auth/{accountId}/confirm*
+   * Path: */auth/{accountId}/confirm?token=khdkhfvf9873dkhf8374kdvh*
    * Http method: *POST*
+   * Query param: *token* jwt token which identify user
    * Body type: EMPTY
    * Response type: JSON
    * Response example:  
