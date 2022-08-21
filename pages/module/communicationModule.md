@@ -49,7 +49,7 @@ We expose one endpoint for a communication history.
    * PATH parameters: *recipientId* - value any valid message recipient id
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "sucess", "body" : [{"recipientId":"ds678s79s", "message":"Hello, it's me"},{"recipientId":"ds678s79s", "message":"How are you"}] }
+      * success: *{ "status" : "sucess", "body" : [{"recipientId":"ds678s79s","senderId":"dfr45tr", "message":"Hello, it's me"},{"recipientId":"ds678s79s", "senderId" : "sfsf98dfld9", "message":"How are you"}] }
       * failed: *{ "status" : "failed", "error":"Cannot update message" }*
 
 </details>
