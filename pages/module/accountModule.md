@@ -193,7 +193,7 @@ with required json body and jwt token on headers
 We expose one endpoint for joining required space
 
 ###### 1. Join space
-   * Path: */account/space/join/{spaceId}*
+   * Path: */account/space/{spaceId}/join*
    * Http method: *POST*
    * Body type: EMPTY
    * Path params:
@@ -218,7 +218,7 @@ with required path parameter *spaceId* and jwt token on headers. User could join
 We expose one endpoint for leaving required space
 
 ###### 1. Leave space
-   * Path: */account/space/leave/{spaceId}*
+   * Path: */account/space/{spaceId}/leave*
    * Http method: *POST*
    * Body type: EMPTY
    * Path params:
