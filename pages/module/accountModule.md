@@ -14,7 +14,7 @@
 We expose two endpoints for registration flow
 
 ###### 1. Check if login is available
-   * Path: */account/check*
+   * Path: */auth/check*
    * Http method: *POST*
    * Body type: JSON
    * Body fileds:
@@ -26,7 +26,7 @@ We expose two endpoints for registration flow
       * not available: *{ "status" : "failed" }*
    
 ###### 2. Create account
-   * Path: */account/register*
+   * Path: */auth/register*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -40,7 +40,7 @@ We expose two endpoints for registration flow
       * failed:  *{ "status" : "failed"}*
   
 ###### 3. Confirm account registration
-   * Path: */account/{accountId}/confirm*
+   * Path: */auth/{accountId}/confirm*
    * Http method: *POST*
    * Body type: EMPTY
    * Response type: JSON
@@ -49,7 +49,7 @@ We expose two endpoints for registration flow
       * failed:  *{ "status" : "failed"}*
   
 ###### 4. Decline account registration
-   * Path: */account/{accountId}/decline*
+   * Path: */auth/{accountId}/decline*
    * Http method: *POST*
    * Body type: EMPTY
    * Response type: JSON
@@ -79,7 +79,7 @@ and creates account.
 We expose one endpoint for login flow
 
 ###### 1. Login user
-   * Path: */account/login*
+   * Path: */auth/login*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -101,7 +101,7 @@ We expose one endpoint for login flow
 We expose one endpoint for reset password flow
 
 ###### 1. Reset password
-   * Path: */account/password/reset*
+   * Path: */auth/password/reset*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -126,7 +126,7 @@ Implemented on UI
   </details>
 
 
-### Profile management
+### Account management
 
 <details>
   <summary>Change password flow</summary>
@@ -167,7 +167,7 @@ on request and stop execution otherwise proceed to the next step.
 We expose one endpoint for profile updating
 
 ###### 1. Update profile
-   * Path: */account/profile/update*
+   * Path: */account*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
@@ -179,7 +179,7 @@ We expose one endpoint for profile updating
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/profile/update* url 
+* User executes request on */account* url 
 with required json body and jwt token on headers
 *  Update user profile with required fields
 
