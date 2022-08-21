@@ -73,7 +73,7 @@ We expose one endpoint for Notes fetching.
    * Body example: *{"entityId":"dhkfd", "entityType":"document", "content":"some note on entity"}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"id" : "l93k7df8", "title" :"myNote1"}, {"id" : "f93kvc7df8", "title" :"mySpace2"}]}*
+      * success: *{ "status" : "success", "body" : [{"id" : "l93k7df8", "content" :"myNote1", "visibililty" : "private", "ownerId" :"dgferdf",  "createdBy":"me", "createTime" : "2022-06-13 20:00:10}, {"id" : "f93kvc7df8", "content" :"note for entity 2", "visibility" : "public", "ownerId" :"dgfdf", "createdBy" : "somebodyelse", "createTime" : "2022-06-13 20:30:10}]}*
       * failed: *{ "status" : "failed", "error":"unknown"}*
 	  
 </details>
@@ -90,7 +90,7 @@ We expose one endpoint for Note fetching.
    * PATH parameters: *noteId* - value any valid id
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "l93k7df8", "title" :"mySpace1"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "l93k7df8", "content" :"myNote1", "visibility" : "public", "ownerId" :"dgfdf",  "createdBy" : "me", "createTime" : "2022-06-13 20:00:10"}}*
       * failed: *{ "status" : "failed", "error":"unknown"}*
 	  
 </details>
@@ -98,20 +98,21 @@ We expose one endpoint for Note fetching.
 ### Classes
 
    <details>
-  <summary>Space Class</summary>
+  <summary>Note Class</summary>
   
-  * Purpose: keep document info structure and corresponding db methods
+  * Purpose: keep note info structure and corresponding db methods
   * Fields:
     * id 
 	* ownerId
-	* title
+	* content
 	* visibility - possible values: *searchable* (space memebers could find document by keywords but content and attachment are not visible), *visible*  (space memebers have full access to document)
 	* accessibility - possible values: *public* (anybody could join space), *private* - (only invited user could join space)
+    * createdBy - full name of owner
     * createTime
     * updateTime
   * Methods:
     * findById
-	* findAll
+    * findByEntity
     * update
     * insert
     * delete
