@@ -13,7 +13,7 @@ We expose one endpoint for Space storing. Any user could create own space and in
    * Path: */space/create*
    * Http method: *POST*
    * Body type: *JSON*
-   * Body example: *{"title":"Lviv group", "visibility":"searchable", "accessibility":"public"}*
+   * Body example: *{"title":"Lviv group", "access":"full", "visibility":"public"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
@@ -42,7 +42,7 @@ We expose one endpoint for updating field on space
 #####	 Comments
 
 * owner cannot extend *visibility*
-* owner cannot change *accessibility*
+* owner cannot change *access* level
 
 </details>
 
