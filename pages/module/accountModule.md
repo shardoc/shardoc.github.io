@@ -22,7 +22,7 @@ We expose two endpoints for registration flow
    * Body example: *{"login" : "user@email.com"}*
    * Response type: JSON
    * Response example: 
-      * available: *{ "status" : "success", "body" : {"token" : "lkjdsf6si7fd987fgh867sduoi3k3b"}}*
+      * available: *{ "status" : "success"}*
       * not available: *{ "status" : "failed" }*
    
 ###### 2. Create account
@@ -88,7 +88,7 @@ We expose one endpoint for login flow
    * Body example: *{"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success" }*
+      * success: *{ "status" : "success", "body" : {"token" : "lkjdsf6si7fd987fgh867sduoi3k3b"} }*
       * failed: *{ "status" : "failed" }*
 
   </details>
