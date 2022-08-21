@@ -167,7 +167,7 @@ on request and stop execution otherwise proceed to the next step.
 We expose one endpoint for profile updating
 
 ###### 1. Update profile
-   * Path: */account*
+   * Path: */account/update*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
