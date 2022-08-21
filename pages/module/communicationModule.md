@@ -43,9 +43,9 @@ We expose one endpoint for deleting message
 ### Endpoints
 We expose one endpoint for a communication history.
 
-#### 3. History
+#### 3. Get Conversation
    * Path: */message/{recipientId}*
-   * Http method: *POST*
+   * Http method: *GET*
    * PATH parameters: *recipientId* - value any valid message recipient id
    * Response type: JSON
    * Response example: 
