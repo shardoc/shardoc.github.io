@@ -36,7 +36,7 @@ We expose two endpoints for registration flow
    * Body example: {"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}
    * Response type: JSON
    * Response example:  
-      * success: *{ "status" : "sucess", "body" : {"accountId" : "l93kdf8"}}*
+      * success: *{ "status" : "sucsess", "body" : {"accountId" : "l93kdf8"}}*
       * failed:  *{ "status" : "failed"}*
   
 ###### 3. Confirm account registration
@@ -45,7 +45,7 @@ We expose two endpoints for registration flow
    * Body type: EMPTY
    * Response type: JSON
    * Response example:  
-      * success: *{ "status" : "sucess"}*
+      * success: *{ "status" : "success"}*
       * failed:  *{ "status" : "failed"}*
   
 ###### 4. Decline account registration
@@ -54,7 +54,7 @@ We expose two endpoints for registration flow
    * Body type: EMPTY
    * Response type: JSON
    * Response example:  
-      * success: *{ "status" : "sucess"}*
+      * success: *{ "status" : "success"}*
       * failed:  *{ "status" : "failed"}*
    
 ##### Steps
