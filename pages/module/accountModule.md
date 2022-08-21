@@ -159,7 +159,7 @@ on request and stop execution otherwise proceed to the next step.
 
   </details>
   <details>
-  <summary>Update profile flow</summary>
+  <summary>Update account flow</summary>
 
 ![Update profile flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateProfile.png)
 
@@ -313,7 +313,8 @@ and send confirmation email with confirmation and rejection urls
   * Purpose: describe authentication API
   * Methods:
     * updatePassword
-    * updateProfile
-    * updateSpaces
+    * updateAccount
+    * joinSpace
+    * leaveSpace
     * closeAccount
 </details>
