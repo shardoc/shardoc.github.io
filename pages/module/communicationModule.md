@@ -21,28 +21,6 @@ We expose one endpoint for a sending message.
 	  
 </details>
 
-<details>
-  <summary>Update message</summary>
-
-### Endpoints
-
-We expose one endpoint for updating message
-
-#### 3. Update message
-   * Path: */message/{messageId}*
-   * Http method: *POST*
-   * PATH parameters: *messageId* - value any valid message id
-   * Body type: *JSON*
-   * Body example: *{"message":"Updated Title"}*
-   * Response type: JSON
-   * Response example: 
-      * success: *{ "status" : "sucess" }
-      * failed: *{ "status" : "failed", "error":"Cannot update message" }*
-
-</details>
-
-
-
   <details>
   <summary>Delete message</summary>
 
