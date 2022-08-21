@@ -110,8 +110,8 @@ We expose one endpoint for Space storing. Any user could create own space and in
     * id 
 	* ownerId
 	* title
-	* visibility - possible values: *searchable* (space memebers could find document by keywords but content and attachment are not visible), *visible*  (space memebers have full access to document)
-	* accessibility - possible values: *public* (anybody could join space), *private* - (only invited user could join space)
+	* access - possible values: *restricted* (space memebers could find document by keywords but content and attachment are not visible), *full*  (space memebers have full access to document)
+	* visibility - possible values: *public* (anybody could join space), *private* - (only invited user could join space)
     * createTime
     * updateTime
   * Methods:
