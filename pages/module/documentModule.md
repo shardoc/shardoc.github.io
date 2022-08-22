@@ -156,7 +156,7 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *documentId* - value *any valid document id*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"files":["fileName" : "some_cv.pdf"]"tags":["healthcare","sale"], "spaces" : ["global"]}}*
+      * success: *{ "status" : "success", "body" : {"id" : "jsd98sd", "files":["fileName", "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Get all own documents
@@ -165,7 +165,7 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
+      * success: *{ "status" : "success", "body" : [{"id" : "jsd98sd", "files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 
 </details>
