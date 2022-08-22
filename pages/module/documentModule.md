@@ -244,7 +244,7 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Body example: *{"documentIdList":["id1","id2",...,"idN"]}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "khd65dfkld", "status" :"inprogress" "message":"You will receive email from document owner"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "khd65dfkld", "status" :"inprogress"}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 2. Share with payment
