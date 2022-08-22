@@ -273,7 +273,7 @@ We expose two endpoints for a finding proper documents in user's own document st
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success"}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"rejected" }}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 5. Cancel document sharing request
@@ -282,7 +282,7 @@ We expose two endpoints for a finding proper documents in user's own document st
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success"}*
+      * success: *{ "status" : "success",  "body" : {"id" : "ljldf786sds", "status" :"cancelled" }}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
   
   
