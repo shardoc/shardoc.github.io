@@ -255,7 +255,7 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Body example: *{"price" :{"amount" : "100", "currency" : "usd"}}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"requested" "message":"You will receive email when payment is completed"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"requested" }*
       * failed: *{ "status" : "failed", "error":"unknown" }*
   
   #### 3. Share without payment
@@ -264,7 +264,7 @@ We expose two endpoints for a finding proper documents in user's own document st
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"shared" "message":"Documents were shared succesfully"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"shared" }*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 4. Reject document sharing request
