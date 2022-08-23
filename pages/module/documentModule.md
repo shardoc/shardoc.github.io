@@ -196,22 +196,18 @@ We expose two endpoints for a finding proper documents in user's own document st
 
 
 #### 1. Search own documents by title or tags
-   * Path: */document/search?p={page}&s={size}*
+   * Path: */document/search?p={page}&s={size}&q={query}*
    * Http method: *POST*
-   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
-   * Body type: *JSON*
-   * Body example: *{"value":"Lviv Java"}*
+   * Query parameters: *p as a page* - page number, value *positive number*; *s as a size* - page size, value *positive number*, *q as a query* - user query
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Advice documents by title or tags in global area
-   * Path: */document/advice?p={page}&s={size}*
-   * Http method: *POST*
-   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
-   * Body type: *JSON*
-   * Body example: *{"value":"Lviv Java"}*
+   * Path: */document/advice?p={page}&s={size}&q={query}*
+   * Http method: *GET*
+   * Query parameters: *p as a page* - page number, value *positive number*; *s as a size* - page size, value *positive number*, *q as a query* - user query
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName"}, "title":"masked title"},{"owner":{"id":"otherUserId2", "fullName": "otherUserFullName2"}, "title":"masked title2"}]*
