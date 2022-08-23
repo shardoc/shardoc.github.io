@@ -66,9 +66,9 @@ We expose one endpoint for deleting note
 We expose one endpoint for Notes fetching.
 
 #### 1. Get Notes for entity
-   * Path: */note/{page}/{size}*
+   * Path: */note?p={page}&s={size}*
    * Http method: *POST*
-   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
+   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
    * Body example: *{"entityId":"dhkfd", "entityType":"document"}*
    * Response type: JSON
