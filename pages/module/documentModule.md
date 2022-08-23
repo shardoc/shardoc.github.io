@@ -160,9 +160,9 @@ We expose two endpoints for a fetching documents
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Get all own documents
-   * Path: */document/{page}/{size}*
+   * Path: */document?p={page}&s={size}*
    * Http method: *GET*
-   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
+   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"id" : "jsd98sd", "files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
@@ -198,7 +198,7 @@ We expose two endpoints for a finding proper documents in user's own document st
 #### 1. Search own documents by title or tags
    * Path: */document/search?p={page}&s={size}*
    * Http method: *POST*
-   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
+   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
@@ -209,7 +209,7 @@ We expose two endpoints for a finding proper documents in user's own document st
 #### 2. Advice documents by title or tags in global area
    * Path: */document/advice?p={page}&s={size}*
    * Http method: *POST*
-   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
+   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
    * Body example: *{"value":"Lviv Java"}*
    * Response type: JSON
