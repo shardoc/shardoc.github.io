@@ -196,7 +196,7 @@ We expose two endpoints for a finding proper documents in user's own document st
 
 
 #### 1. Search own documents by title or tags
-   * Path: */document/search/{page}/{size}*
+   * Path: */document/search?p={page}&s={size}*
    * Http method: *POST*
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
@@ -207,7 +207,7 @@ We expose two endpoints for a finding proper documents in user's own document st
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Advice documents by title or tags in global area
-   * Path: */document/advice/{page}/{size}*
+   * Path: */document/advice?p={page}&s={size}*
    * Http method: *POST*
    * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Body type: *JSON*
@@ -287,11 +287,7 @@ We expose two endpoints for a finding proper documents in user's own document st
   
   
   </details>
-<details>
-<summary>Notes API </summary>
 
-TBD:  
-</details>
 <details>
 <summary>Document analyzer</summary>
 
