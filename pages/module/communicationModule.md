@@ -21,28 +21,6 @@ We expose one endpoint for a sending message.
 	  
 </details>
 
-<details>
-  <summary>Update message</summary>
-
-### Endpoints
-
-We expose one endpoint for updating message
-
-#### 3. Update message
-   * Path: */message/{messageId}*
-   * Http method: *POST*
-   * PATH parameters: *messageId* - value any valid message id
-   * Body type: *JSON*
-   * Body example: *{"message":"Updated Title"}*
-   * Response type: JSON
-   * Response example: 
-      * success: *{ "status" : "sucess" }
-      * failed: *{ "status" : "failed", "error":"Cannot update message" }*
-
-</details>
-
-
-
   <details>
   <summary>Delete message</summary>
 
@@ -65,13 +43,13 @@ We expose one endpoint for deleting message
 ### Endpoints
 We expose one endpoint for a communication history.
 
-#### 3. History
+#### 3. Get Conversation
    * Path: */message/{recipientId}*
-   * Http method: *POST*
+   * Http method: *GET*
    * PATH parameters: *recipientId* - value any valid message recipient id
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "sucess", "body" : [{"recipientId":"ds678s79s", "message":"Hello, it's me"},{"recipientId":"ds678s79s", "message":"How are you"}] }
+      * success: *{ "status" : "sucess", "body" : [{"recipientId":"ds678s79s","senderId":"dfr45tr", "message":"Hello, it's me"},{"recipientId":"ds678s79s", "senderId" : "sfsf98dfld9", "message":"How are you"}] }
       * failed: *{ "status" : "failed", "error":"Cannot update message" }*
 
 </details>

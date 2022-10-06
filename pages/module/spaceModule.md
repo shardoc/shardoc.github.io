@@ -13,7 +13,7 @@ We expose one endpoint for Space storing. Any user could create own space and in
    * Path: */space/create*
    * Http method: *POST*
    * Body type: *JSON*
-   * Body example: *{"title":"Lviv group", "note":[{"id":"1", "created for a reason"}], "visibility":"searchable", "accessibility":"public"}*
+   * Body example: *{"title":"Lviv group", "access":"full", "visibility":"public"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
@@ -28,8 +28,8 @@ We expose one endpoint for Space storing. Any user could create own space and in
 
 We expose one endpoint for updating field on space
 
-#### 3. Update Field
-   * Path: */space/{spaceId}/update*
+#### 1. Update Field
+   * Path: */space/{spaceId}*
    * Http method: *POST*
    * PATH parameters: *spaceId* - value any valid id
    * Body type: *JSON*
@@ -42,7 +42,7 @@ We expose one endpoint for updating field on space
 #####	 Comments
 
 * owner cannot extend *visibility*
-* owner cannot change *accessibility*
+* owner cannot change *access* level
 
 </details>
 
@@ -50,20 +50,32 @@ We expose one endpoint for updating field on space
   <summary>Delete Space</summary>
 
 ### Endpoints
+We expose one endpoint for deleting space
 
-It's not possible to delete space. Space belongs to all space members
+#### 1. Delete Space
+   * Path: */space/{spaceId}*
+   * Http method: *DELETE*
+   * PATH parameters: *spaceId* - value any valid id
+   * Body type: *EMPTY*
+   * Response type: JSON
+   * Response example: 
+      * success: *{ "status" : "sucess" }
+      * failed: *{ "status" : "failed", "error":"Cannot delete space" }*
+	#####	 Comments
+* You could delete only empty space without members
+	
 	
 </details>
 <details>
-  <summary>List Spaces</summary>
+  <summary>Get All Spaces</summary>
 
 ### Endpoints
 We expose one endpoint for Space storing. Any user could create own space and invite any other user.
 
-#### 1. Create Space
-   * Path: */space*
+#### 1. Get All Spaces
+   * Path: */space?p={page}&s={size}*
    * Http method: *GET*
-   
+   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"id" : "l93k7df8", "title" :"mySpace1"}, {"id" : "f93kvc7df8", "title" :"mySpace2"}]}*
@@ -72,13 +84,13 @@ We expose one endpoint for Space storing. Any user could create own space and in
 </details>
 
 <details>
-  <summary>Get Space be id</summary>
+  <summary>Get Space by Id</summary>
 
 ### Endpoints
 We expose one endpoint for Space storing. Any user could create own space and invite any other user.
 
-#### 1. Create Space
-   * Path: */space/spaceId*
+#### 1. Get Space
+   * Path: */space/{spaceId}*
    * Http method: *GET*
    * PATH parameters: *spaceId* - value any valid id
    * Response type: JSON
@@ -98,9 +110,8 @@ We expose one endpoint for Space storing. Any user could create own space and in
     * id 
 	* ownerId
 	* title
-    * notes[] - id values of corresponding note records
-	* visibility - possible values: *searchable* (space memebers could find document by keywords but content and attachment are not visible), *visible*  (space memebers have full access to document)
-	* accessibility - possible values: *public* (anybody could join space), *private* - (only invited user could join space)
+	* access - possible values: *restricted* (space memebers could find document by keywords but content and attachment are not visible), *full*  (space memebers have full access to document)
+	* visibility - possible values: *public* (anybody could join space), *private* - (only invited user could join space)
     * createTime
     * updateTime
   * Methods:

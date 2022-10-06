@@ -7,46 +7,45 @@
   <summary>Document storing</summary>
 
 ### Endpoints
-We expose one endpoint for Document storing
+We expose two endpoints for Document storing
 
 #### 1. Create Document
-   * Path: */document/create/{force}*
+   * Path: */document/create/force* and */document/create*
    * Http method: *POST*
-   * PATH parameters: *force* - value *true/false*
    * Body type: *FormData*
-   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]},
+   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]},
                     files :<fileData>*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
       * failed: *{ "status" : "failed", "error":"duplicates", "body" : {"documents" : [{id:"l93k7df8", "title":"Some other doc"}] }*
 	  
-#####	 Scenario 1: Create Document with flag force equals false. Success flow.
+#####	 Scenario 1: Create Document without flag force. Success flow.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
 	  
 ###### Steps
-* User executes request on */document/create/false* url
+* User executes request on */document/create* url
 * Application checks if there is no already files with the same name attached to other documents
 * No files with the same name
 * Application creates document based on JSON from field ***document***
 * Application saves files on the file system
 
-#####	 Scenario 2: Create Document with flag force equals false. Fail flow.
+#####	 Scenario 2: Create Document without flag force. Fail flow.
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
 	  
 ###### Steps
-* User executes request on */document/create/false* url
+* User executes request on */document/create* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Application finds documents with attached files with the same name
 * Application returns fail response with list of documents which could be duplicates
 
-#####	 Scenario 3: Create Document with flag force equals true.
+#####	 Scenario 3: Create Document with flag force.
 
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceTrue.png)
 	  
 ###### Steps
-* User executes request on */document/create/true* url
+* User executes request on */document/create/force* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Rename file with help of proper ending line file_1.pdf, file_2.pdf
@@ -87,12 +86,12 @@ We expose one endpoint for updating field on document
 
 ### Endpoints
 
-We expose one endpoint for attaching file to existing document
+We expose two endpoints for attaching file to existing document
 
 #### 3. Attach files
-   * Path: */document/{documentId}/attach/{force}*
+   * Path: */document/{documentId}/attach/force* and */document/{documentId}/attach*
    * Http method: *POST*
-   * PATH parameters: *documentId* - value any valid id; *force* - value *true/false*
+   * PATH parameters: *documentId* - value any valid id
    * Body type: *FormData*
    * Body example: *files :<fileData>*
    * Response type: JSON
@@ -105,7 +104,7 @@ We expose one endpoint for attaching file to existing document
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseSuccess.png)
 
 ###### Steps
-* User executes request on */document/{documentId}/attach/false* url
+* User executes request on */document/{documentId}/attach* url
 * Application checks if there is no already files with the same name attached to other documents
 * No files with the same name
 * Application saves files on the file system
@@ -119,7 +118,7 @@ We expose one endpoint for attaching file to existing document
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseFail.png)
 
 ###### Steps
-* User executes request on */document/{documentId}/attach/false* url
+* User executes request on */document/{documentId}/attach* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Application finds documents with attached files with the same name
@@ -131,7 +130,7 @@ We expose one endpoint for attaching file to existing document
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceTrue.png)
 
 ###### Steps
-* User executes request on */document/{documentId}/attach/true* url
+* User executes request on */document/{documentId}/attach/force* url
 * Application checks if there is no already files with the same name attached to other documents
 * There are files with the same name
 * Rename file with help of proper ending line file_1.pdf, file_2.pdf
@@ -157,18 +156,17 @@ We expose two endpoints for a fetching documents
    * PATH parameters: *documentId* - value *any valid document id*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}}*
+      * success: *{ "status" : "success", "body" : {"id" : "jsd98sd", "files":["fileName", "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
 #### 2. Get all own documents
-   * Path: */document/{page}/{size}*
+   * Path: */document?p={page}&s={size}*
    * Http method: *GET*
-   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
+   * Query parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
+      * success: *{ "status" : "success", "body" : [{"id" : "jsd98sd", "files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention paging should be implemented on repository request
 
 </details>
   <details>
@@ -198,28 +196,22 @@ We expose two endpoints for a finding proper documents in user's own document st
 
 
 #### 1. Search own documents by title or tags
-   * Path: */document/search/{page}/{size}*
+   * Path: */document/search?p={page}&s={size}&q={query}*
    * Http method: *POST*
-   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
-   * Body type: *JSON*
-   * Body example: *{"value":"Lviv Java"}*
+   * Query parameters: *p as a page* - page number, value *positive number*; *s as a size* - page size, value *positive number*, *q as a query* - user query
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "notes":[{"id":"1", "given file requires postprocessing"}], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
+      * success: *{ "status" : "success", "body" : [{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]}]}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention paging should be implemented on repository request
 	  
 #### 2. Advice documents by title or tags in global area
-   * Path: */document/advice/{page}/{size}*
-   * Http method: *POST*
-   * PATH parameters: *page* - page number, value *positive number*; *size* - page size, value *positive number* 
-   * Body type: *JSON*
-   * Body example: *{"value":"Lviv Java"}*
+   * Path: */document/advice?p={page}&s={size}&q={query}*
+   * Http method: *GET*
+   * Query parameters: *p as a page* - page number, value *positive number*; *s as a size* - page size, value *positive number*, *q as a query* - user query
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : [{"owner":{"id":"otherUserId", "fullName": "otherUserFullName"}, "title":"masked title"},{"owner":{"id":"otherUserId2", "fullName": "otherUserFullName2"}, "title":"masked title2"}]*
       * failed: *{ "status" : "failed", "error":"unknown" }*
-   * Notes: Pay attention paging should be implemented on repository request
 			  
 #####	 Scenario 1: Advice documents
 
@@ -248,18 +240,18 @@ We expose two endpoints for a finding proper documents in user's own document st
    * Body example: *{"documentIdList":["id1","id2",...,"idN"]}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "khd65dfkld", "status" :"inprogress" "message":"You will receive email from document owner"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "khd65dfkld", "status" :"inprogress"}}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 2. Share with payment
-   * Path: */document/payment/request/{shareId}*
+   * Path: */document/share/{shareId}/payment*
    * PATH parameters: *shareId* - id of share data 
    * Http method: *POST*
    * Body type: *JSON*
    * Body example: *{"price" :{"amount" : "100", "currency" : "usd"}}*
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"requested" "message":"You will receive email when payment is completed"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"requested" }*
       * failed: *{ "status" : "failed", "error":"unknown" }*
   
   #### 3. Share without payment
@@ -268,25 +260,25 @@ We expose two endpoints for a finding proper documents in user's own document st
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"shared" "message":"Documents were shared succesfully"}}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"shared" }*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 4. Reject document sharing request
-   * Path: */document/share/reject/{shareId}*
+   * Path: */document/share/{shareId}/reject*
    * Http method: *GET*
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success"}*
+      * success: *{ "status" : "success", "body" : {"id" : "ljldf786sds", "status" :"rejected" }}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
 	  
   #### 5. Cancel document sharing request
-   * Path: */document/share/cancel/{shareId}*
+   * Path: */document/share/{shareId}/cancel*
    * Http method: *GET*
    * PATH parameters: *shareId* - id of share data 
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "success"}*
+      * success: *{ "status" : "success",  "body" : {"id" : "ljldf786sds", "status" :"cancelled" }}*
       * failed: *{ "status" : "failed", "error":"unknown" }*
   
   
