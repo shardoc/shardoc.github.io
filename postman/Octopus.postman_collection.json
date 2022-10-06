@@ -1,0 +1,3704 @@
+{
+	"info": {
+		"_postman_id": "cee9fabe-5e9f-483b-adf5-26ede59eb439",
+		"name": "Octopus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2004977"
+	},
+	"item": [
+		{
+			"name": "Account Module",
+			"item": [
+				{
+					"name": "Check Account",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"login\", \"user@email.com\");\r",
+									"pm.environment.set(\"password\", \"wuy8632k!h89sd#\");\r",
+									"pm.environment.set(\"page\", 1);\r",
+									"pm.environment.set(\"size\", 10);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{login}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/auth/check",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"auth",
+								"check"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check Account",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"user@email.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/auth/check",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"auth",
+										"check"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"accountId\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"accountId\", jsonData.body.accountId);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName \": \"Test User\",\r\n    \"login\": \"{{login}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/auth/register",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Account",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName \": \"Test User\",\r\n    \"login\": \"{{login}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/auth/register",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"accountId\": \"mockServer_accountId1\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Confirm Account Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/account/confirm",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"confirm"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Confirm Account Registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/account/confirm",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"confirm"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Decline Account Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/account/decline",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"decline"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Account Confirmation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/account/decline",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"decline"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"token\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"token\", jsonData.body.token);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{login}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/account/login",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"{{login}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/account/login",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"token\": \"lkjdsf6si7fd987fgh867sduoi3k3b\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset Account Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{login}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/auth/password/reset",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"auth",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset Account Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"{{login}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/auth/password/reset",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"auth",
+										"password",
+										"reset"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Account Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"newPassword\", \"jd7_g2$hj\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"{{password}}\",\r\n    \"newPassword\": \"{{newPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/account/password/update",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"password",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Account Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"oldPassword\": \"{password}\",\r\n    \"newPassword\": \"jd7_g2$hj\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/account/password/update",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"password",
+										"update"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Re-Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"token\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"token\", jsonData.body.token);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"{{login}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/auth/login",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Re-Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"{{login}}\",\r\n    \"password\": \"{{newPassword}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/auth/login",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"token\": \"lkjdsf6si7fd987fgh867sduoi3k3b\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Account Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"John Smith\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/account/update",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Account Profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"John Smith\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/account/update",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"update"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Join Space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"spaceId\", \"mock_spaceId_1\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/account/spaces/{{spaceId}}/join",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"spaces",
+								"{{spaceId}}",
+								"join"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Join Space",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/account/spaces/{{spaceId}}/join",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"spaces",
+										"{{spaceId}}",
+										"join"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Leave Space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/account/spaces/{{spaceId}}/leave",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"spaces",
+								"{{spaceId}}",
+								"leave"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Leave Space",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/account/spaces/{{spaceId}}/leave",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"spaces",
+										"{{spaceId}}",
+										"leave"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Close Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/account/close",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"close"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Close Account",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/account/close",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"close"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Confirm Account Close",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/account/close/confirm",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"close",
+								"confirm"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Confirm Account Close",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/account/close/confirm",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"close",
+										"confirm"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Decline Account Close",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/account/close/decline",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"account",
+								"close",
+								"decline"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Decline Account Close",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/account/close/decline",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"account",
+										"close",
+										"decline"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"status\": \"success\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Document Module",
+			"item": [
+				{
+					"name": "Create Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"documentId\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"documentId\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"value": "{\"files\":[\"fileName\" : \"some_cv.pdf\"], \"tags\":[\"healthcare\",\"sale\"], \"spaces\" : [\"global\"]}",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/home/lyudmyla/Downloads/some_cv.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_url}}/document/create",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Document",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "document",
+											"value": "{\"files\":[\"fileName\" : \"some_cv.pdf\"], \"tags\":[\"healthcare\",\"sale\"], \"spaces\" : [\"global\"]}",
+											"type": "text"
+										},
+										{
+											"key": "files",
+											"type": "file",
+											"src": "/home/lyudmyla/Downloads/some_cv.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/document/create",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"create"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"l93k7df8\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Document with Force",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"value": "{\"files\":[\"fileName\" : \"some_cv.pdf\"], \"tags\":[\"healthcare\",\"sale\"], \"spaces\" : [\"global\"]}",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/home/lyudmyla/Downloads/some_cv.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_url}}/document/create/force",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"create",
+								"force"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Document with Force",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "document",
+											"value": "{\"files\":[\"fileName\" : \"some_cv.pdf\"], \"tags\":[\"healthcare\",\"sale\"], \"spaces\" : [\"global\"]}",
+											"type": "text"
+										},
+										{
+											"key": "files",
+											"type": "file",
+											"src": "/home/lyudmyla/Downloads/some_cv.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/document/create/force",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"create",
+										"force"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"l93k7df8cv\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Updated Title\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/document/{{documentId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"{{documentId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Document",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Updated Title\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/document/{{documentId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"{{documentId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Attach File",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/home/lyudmyla/Downloads/another_cv.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_url}}/document/{{documentId}}/attach",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"{{documentId}}",
+								"attach"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Attach File",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "files",
+											"type": "file",
+											"src": "/home/lyudmyla/Downloads/another_cv.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/document/{{documentId}}/attach",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"{{documentId}}",
+										"attach"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"status\": \"success\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Attach File with Force",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/home/lyudmyla/Downloads/another_cv.pdf",
+										"/home/lyudmyla/Downloads/one_more_cv.pdf"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_url}}/document/{{documentId}}/attach/force",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"{{documentId}}",
+								"attach",
+								"force"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Attach File with Force",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "files",
+											"type": "file",
+											"src": [
+												"/home/lyudmyla/Downloads/another_cv.pdf",
+												"/home/lyudmyla/Downloads/one_more_cv.pdf"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api_url}}/document/{{documentId}}/attach/force",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"{{documentId}}",
+										"attach",
+										"force"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/document/{{documentId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"{{documentId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Document",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/document/{{documentId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"{{documentId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"l93k7df8\",\n        \"files\": [\n            \"fileName\",\n            \"some_cv.pdf\"\n        ],\n        \"tags\": [\n            \"healthcare\",\n            \"sale\"\n        ],\n        \"spaces\": [\n            \"fgwewb43d\"\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All own Documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/document?p={{page}}&s={{size}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document"
+							],
+							"query": [
+								{
+									"key": "p",
+									"value": "{{page}}"
+								},
+								{
+									"key": "s",
+									"value": "{{size}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All own Documents",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/document?p={{page}}&s={{size}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document"
+									],
+									"query": [
+										{
+											"key": "p",
+											"value": "{{page}}"
+										},
+										{
+											"key": "s",
+											"value": "{{size}}"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \n    \"status\": \"success\",\n    \"body\": [{\n        \"id\": \"l93k7df8\",\n        \"files\": [\n            \"fileName\",\n            \"some_cv.pdf\"\n        ],\n        \"tags\": [\n            \"healthcare\",\n            \"sale\"\n        ],\n        \"spaces\": [\n            \"3fd90er2\"\n        ]\n    },\n    {\n        \"id\": \"233k7df812\",\n        \"files\": [\n            \"fileName\",\n            \"some_other_cv.pdf\"\n        ],\n        \"tags\": [\n            \"tag1\",\n            \"tag2\"\n        ],\n        \"spaces\": []\n    }]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"page\", 1);",
+									"pm.environment.set(\"size\", 10);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idList\":[\"{{documentId}}}}\"]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/document",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Documents",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"idList\":[\"{{documentId}}}}\"]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/document",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"status\": \"success\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"page\", 1);",
+									"pm.environment.set(\"size\", 10);",
+									"pm.environment.set(\"query\", \"Lviv Java\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/document/search?p={{page}}&s={{size}}&q={{query}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"search"
+							],
+							"query": [
+								{
+									"key": "p",
+									"value": "{{page}}"
+								},
+								{
+									"key": "s",
+									"value": "{{size}}"
+								},
+								{
+									"key": "q",
+									"value": "{{query}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Search Documents",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/document/search?p={{page}}&s={{size}}&q={{query}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"search"
+									],
+									"query": [
+										{
+											"key": "p",
+											"value": "{{page}}"
+										},
+										{
+											"key": "s",
+											"value": "{{size}}"
+										},
+										{
+											"key": "q",
+											"value": "{{query}}"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": [\n        {\n            \"id\": \"l93k7df8\",\n            \"files\": [\n                \"fileName\",\n                \"some_cv.pdf\"\n            ],\n            \"tags\": [\n                \"healthcare\",\n                \"sale\"\n            ],\n            \"spaces\": [\n                \"3fd90er2\"\n            ]\n        },\n        {\n            \"id\": \"233k7df812\",\n            \"files\": [\n                \"fileName\",\n                \"some_other_cv.pdf\"\n            ],\n            \"tags\": [\n                \"tag1\",\n                \"tag2\"\n            ],\n            \"spaces\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Document Advices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"page\", 1);",
+									"pm.environment.set(\"size\", 10);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/document/advice?p={{page}}&s={{size}}&q={{query}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"advice"
+							],
+							"query": [
+								{
+									"key": "p",
+									"value": "{{page}}"
+								},
+								{
+									"key": "s",
+									"value": "{{size}}"
+								},
+								{
+									"key": "q",
+									"value": "{{query}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Document Advices",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/document/advice?p={{page}}&s={{size}}&q={{query}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"advice"
+									],
+									"query": [
+										{
+											"key": "p",
+											"value": "{{page}}"
+										},
+										{
+											"key": "s",
+											"value": "{{size}}"
+										},
+										{
+											"key": "q",
+											"value": "{{query}}"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": [\n        {\n            \"owner\": {\n                \"id\": \"otherUserId\",\n                \"fullName\": \"otherUserFullName\"\n            },\n            \"title\": \"masked title\"\n        },\n        {\n            \"owner\": {\n                \"id\": \"otherUserId2\",\n                \"fullName\": \"otherUserFullName2\"\n            },\n            \"title\": \"masked title2\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Share Document Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"shareId\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"shareId\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentIdList\": [\n        \"{{documentId}}\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/document/share/request",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"request"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Share Document Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"documentIdList\": [\n        \"{{documentId}}\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/document/share/request",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"share",
+										"request"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"khd65dfkld\",\n        \"status\": \"inprogress\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Share Document with Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"price\": {\n        \"amount\": \"100\",\n        \"currency\": \"usd\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/document/share/{{shareId}}/payment",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"{{shareId}}",
+								"payment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Share Document with Payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"price\": {\n        \"amount\": \"100\",\n        \"currency\": \"usd\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/document/share/{{shareId}}/payment",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"share",
+										"{{shareId}}",
+										"payment"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{shareId}}\",\n        \"status\": \"requested\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Share Document Request2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"shareId2\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"shareId2\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentIdList\": [\n        \"{{documentId}}\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/document/share/request",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Share Document without Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/document/share/{{shareId2}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"{{shareId2}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Share Document without Payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/document/share/{{shareId2}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"share",
+										"{{shareId2}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{shareId2}}\",\n        \"status\": \"shared\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Share Document Request3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"shareId3\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"shareId3\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentIdList\": [\n        \"{documentId}\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/document/share/request",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Share Document Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/document/share/{{shareId3}}/reject",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"{{shareId3}}",
+								"reject"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reject Share Document Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/document/share/{{shareId3}}/reject",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"share",
+										"{{shareId3}}",
+										"reject"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{shareId3}}\",\n        \"status\": \"rejected\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Share Document Request4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"shareId4\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"shareId4\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentIdList\": [\n        \"{documentId}\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/document/share/request",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Share Document Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/document/share/{{shareId4}}/cancel",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"document",
+								"share",
+								"{{shareId4}}",
+								"cancel"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Cancel Share Document Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/document/share/{{shareId4}}/cancel",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"document",
+										"share",
+										"{{shareId4}}",
+										"cancel"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{shareId3}}\",\n        \"status\": \"cancelled\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Space Module",
+			"item": [
+				{
+					"name": "Create Space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"spaceId\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"spaceId\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"spaceId\", \"l93k7df8\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Lviv group\",\n    \"access\": \"restricted\",\n    \"visibility\": \"public\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/space/create",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"space",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Space",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Lviv group\",\n    \"access\": \"restricted\",\n    \"visibility\": \"public\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/space/create",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"space",
+										"create"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{spaceId}}\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Updated Title\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/space/{{spaceId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"space",
+								"{{spaceId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Space",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Updated Title\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/space/{{spaceId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"space",
+										"{{spaceId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/space/{{spaceId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"space",
+								"{{spaceId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Space",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/space/{{spaceId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"space",
+										"{{spaceId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Space",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/space/{{spaceId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"space",
+								"{{spaceId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Space",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/space/{{spaceId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"space",
+										"{{spaceId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{spaceId}}\",\n        \"title\": \"mySpace1\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Spaces",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/space?p={{page}}&s={{size}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"space"
+							],
+							"query": [
+								{
+									"key": "p",
+									"value": "{{page}}"
+								},
+								{
+									"key": "s",
+									"value": "{{size}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Spaces",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/space?p={{page}}&s={{size}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"space"
+									],
+									"query": [
+										{
+											"key": "p",
+											"value": "{{page}}"
+										},
+										{
+											"key": "s",
+											"value": "{{size}}"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": [\n        {\n            \"id\": \"l93k7df8\",\n            \"title\": \"mySpace1\"\n        },\n        {\n            \"id\": \"f93kvc7df8\",\n            \"title\": \"mySpace2\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Note Module",
+			"item": [
+				{
+					"name": "Create Note",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"spaceId\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"spaceId\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Note Content\",\n    \"visibility\": \"private\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/note/create",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"note",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Note",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": \"Note Content\",\n    \"visibility\": \"private\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/note/create",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"note",
+										"create"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{noteId}}\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Note",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Updated Content\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/note/{{noteId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"note",
+								"{{noteId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Note",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\": \"Updated Content\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/note/{{noteId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"note",
+										"{{noteId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Note",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/note/{{noteId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"note",
+								"{{noteId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Note",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/note/{{noteId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"note",
+										"{{noteId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Note",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/note/{{noteId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"note",
+								"{{noteId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Note",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/note/{{noteId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"note",
+										"{{noteId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\n        \"id\": \"{{noteId}}\",\n        \"content\": \"myNote1\",\n        \"visibility\": \"public\",\n        \"ownerId\": \"dgfdf\",\n        \"createdBy\": \"me\",\n        \"createTime\": \"2022-06-13 20:00:10\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Notes By Entity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entityId\": \"dhkfd\",\n    \"entityType\": \"document\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/note?p={{page}}&s={{size}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"note"
+							],
+							"query": [
+								{
+									"key": "p",
+									"value": "{{page}}"
+								},
+								{
+									"key": "s",
+									"value": "{{size}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Notes By Entity",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"entityId\": \"dhkfd\",\n    \"entityType\": \"document\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/note?p={{page}}&s={{size}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"note"
+									],
+									"query": [
+										{
+											"key": "p",
+											"value": "{{page}}"
+										},
+										{
+											"key": "s",
+											"value": "{{size}}"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": [\n        {\n            \"id\": \"{{noteId}}\",\n            \"content\": \"myNote1\",\n            \"visibility\": \"public\",\n            \"ownerId\": \"dgfdf\",\n            \"createdBy\": \"me\",\n            \"createTime\": \"2022-06-13 20:00:10\"\n        },\n        {\n            \"id\": \"f93kvc7df8\",\n            \"content\": \"note for entity 2\",\n            \"visibility\": \"public\",\n            \"ownerId\": \"dgfdf\",\n            \"createdBy\": \"somebodyelse\",\n            \"createTime\": \"2022-06-13 20:30:10\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Communication Module",
+			"item": [
+				{
+					"name": "Send Message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.unset(\"messageId\")",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    pm.environment.set(\"messageId\", jsonData.body.id);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipientId\": \"ds678s79s\",\n    \"message\": \"Hello, it's me\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/message",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"message"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Send Message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"recipientId\": \"ds678s79s\",\n    \"message\": \"Hello, it's me\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/message",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"message"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": {\"id\" : \"{{messageId}}\"}\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/message/{{messageId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"message",
+								"{{messageId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Message",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/message/{{messageId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"message",
+										"{{messageId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"status\": \"success\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Conversation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"partnerId\", \"lskjd876fsdklj\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_url}}/message/{{partnerId}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"message",
+								"{{partnerId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Conversation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/message/{{partnerId}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"message",
+										"{{partnerId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"body\": [\n        {\n            \"recipientId\": \"ds678s79s\",\n            \"senderId\": \"{{partnerId}}\",\n            \"message\": \"Hello, it's me\"\n        },\n        {\n            \"recipientId\": \"{{partnerId}}\",\n            \"senderId\": \"ds678s79s\",\n            \"message\": \"How are you\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Payment Module",
+			"item": [
+				{
+					"name": "Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.expect(pm.response.code, \"response status code\").to.be.equal(200)",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Received status: \" + jsonData.status, function() {",
+									"    postman.setNextRequest(null);",
+									"    pm.expect(jsonData.status).to.be.oneOf([\"success\"]);",
+									"    postman.setNextRequest();",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shareId\": \"{shareId}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}/payment",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"payment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"shareId\": \"{shareId}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/payment",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"payment"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
