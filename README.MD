@@ -18,5 +18,5 @@ Owner can share files for free or ask for a payment.
 * ### [User Interface](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/ui.md)
 * ### [Marketing](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/marketing.md)
 * ### [MockServer](https://49138aa7-8948-48e7-9b97-1afd12c816f0.mock.pstmn.io)
-* ### [PostmanTests](https://github.com/shardoc/shardoc.github.io/postman)
+* ### [PostmanTests](https://github.com/shardoc/shardoc.github.io/tree/dev/postman)
 
