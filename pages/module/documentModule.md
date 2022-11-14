@@ -26,31 +26,28 @@ We expose two endpoints for Document storing
 ###### Steps
 * User executes request on */document/create* url
 * Application checks if there is no already files with the same name attached to other documents
-* No files with the same name
-* Application creates document based on JSON from field ***document***
-* Application saves files on the file system
 
-#####	 Scenario 2: Create Document without flag force. Fail flow.
-![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceFalseSuccess.png)
-	  
-###### Steps
-* User executes request on */document/create* url
-* Application checks if there is no already files with the same name attached to other documents
-* There are files with the same name
-* Application finds documents with attached files with the same name
-* Application returns fail response with list of documents which could be duplicates
+* If file with the same name is found list of documents which could be duplicates and response 
+"failed: { "status" : "failed", "error":"duplicates", "body" : {"documents" : [{id:"l93k7df8", "title":"Some other doc"}] }"
+is returned.
 
-#####	 Scenario 3: Create Document with flag force.
+* If theres in no file with the same name
+* Application creates document based on JSON from field document
+* Application saves file on the file system
+
+#####	 Scenario 2: Create Document with flag force.
 
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/createDocumentForceTrue.png)
 	  
 ###### Steps
 * User executes request on */document/create/force* url
-* Application checks if there is no already files with the same name attached to other documents
+* Application checks if there is no already files with the same name attached to other documents 
 * There are files with the same name
+
 * Rename file with help of proper ending line file_1.pdf, file_2.pdf
-* Application creates document based on JSON from field ***document***
+* Application creates document based on JSON from field document
 * Application saves files on the file system
+
 </details>
 
 <details>
