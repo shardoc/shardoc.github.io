@@ -85,7 +85,7 @@ We expose one endpoint for updating field on document
 
 We expose two endpoints for attaching file to existing document
 
-#### 3. Attach files
+#### 3. Replace files
    * Path: */document/{documentId}/attach/force* and */document/{documentId}/attach*
    * Http method: *POST*
    * PATH parameters: *documentId* - value any valid id
@@ -110,7 +110,7 @@ We expose two endpoints for attaching file to existing document
 * Application updates field *files* on document with given *documentId* 
 
 	  
-#####	 Scenario 2: Attach file with flag force equals false. Failed flow.
+#####	 Scenario 2: Replace file with flag force equals false. Failed flow.
 
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseFail.png)
 
@@ -122,7 +122,7 @@ We expose two endpoints for attaching file to existing document
 * Application returns fail response with list of documents which could be duplicates
 
 
-#####	 Scenario 3: Attach file with flag force equals true.
+#####	 Scenario 3: Replace file with flag force equals true.
 
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceTrue.png)
 
