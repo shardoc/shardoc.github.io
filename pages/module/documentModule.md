@@ -79,11 +79,11 @@ We expose one endpoint for updating field on document
 
 </details>
 <details>
-  <summary>Attach Files to Document</summary>
+  <summary>Replace Files in Document</summary>
 
 ### Endpoints
 
-We expose two endpoints for attaching file to existing document
+We expose two endpoints for replacing file in existing document
 
 #### 3. Replace files
    * Path: */document/{documentId}/attach/force* and */document/{documentId}/attach*
@@ -96,7 +96,7 @@ We expose two endpoints for attaching file to existing document
       * success: *{ "status" : "sucess", "body" : {"filename" : "file_1.pdf"} }
       * failed: *{ "status" : "failed", "error":"duplicates", "body" : {"documents" : [{id:"l93k7df8", "title":"Some other doc"}] }*
 
-#####	 Scenario 1: Attach file with flag force equals false. Success flow.
+#####	 Scenario 1: Replace file with flag force equals false. Success flow.
 
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/attachFileForceFalseSuccess.png)
 
