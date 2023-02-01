@@ -1,4 +1,4 @@
-# Shardoc documentation pages
+# Octopus documentation pages
 
 [Markup tutorial](https://guides.github.com/features/mastering-markdown/)
 
