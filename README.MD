@@ -9,7 +9,7 @@ where you and colleagues could find required
 files.
 User can share files within own circle,
  make it fully public or keep it private.
-Owner can share files for free or ask for a payment.
+Owner can share files for free or charge for it.
 
 ## Content
 * ### [Specification](https://github.com/shardoc/shardoc.github.io/blob/dev/pages/specification.md)
