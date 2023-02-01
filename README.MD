@@ -4,7 +4,7 @@
 
 
 ## Idea
-Shardoc allows you creating shared spaces 
+Octopus allows you creating shared spaces 
 where you and colleagues could find required
 files.
 User can share files within own circle,
