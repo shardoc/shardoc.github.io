@@ -13,8 +13,8 @@ We expose two endpoints for Document storing
    * Path: */document/create/force* and */document/create*
    * Http method: *POST*
    * Body type: *FormData*
-   * Body example: *document:{"files":["fileName" : "some_cv.pdf"], "tags":["healthcare","sale"], "spaces" : ["global"]},
-                    files :<fileData>*
+   * Body example: *document:{"tags":["healthcare","sale"], "spaces" : ["hw7wh34"]},
+                    document_file :<fileData>*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"id" : "l93k7df8"} }*
@@ -58,9 +58,9 @@ is returned.
 We expose one endpoint for updating field on document
 
 #### 3. Update Field
-   * Path: */document/{documentId}/update*
+   * Path: */document/{document_id}/update*
    * Http method: *POST*
-   * PATH parameters: *documentId* - value any valid id
+   * PATH parameters: *document_id* - value any valid id
    * Body type: *JSON*
    * Body example: *{"title":"Updated Title"}*
    * Response type: JSON
@@ -73,8 +73,8 @@ We expose one endpoint for updating field on document
 ![Document storing flow sequence diagram](https://github.com/shardoc/shardoc.github.io/blob/dev/images/updateDocumentField.png)
 
 ###### Steps
-* User executes request on */document/{documentId}/update* url and pass proper body
-* Application validates data (user can update only visible fields like *title*, *tags*, etc. Except field *files*, that filed has dedicate API method)
+* User executes request on */document/{document_id}/update* url and pass proper body
+* Application validates data (user can update only visible fields like *title*, *tags*, etc. Except field *document_file*, that filed has dedicate API method)
 * Application updates field
 
 </details>
@@ -86,11 +86,11 @@ We expose one endpoint for updating field on document
 We expose two endpoints for replacing file in existing document
 
 #### 3. Replace files
-   * Path: */document/{documentId}/attach/force* and */document/{documentId}/attach*
+   * Path: */document/{document_id}/attach/force* and */document/{document_id}/attach*
    * Http method: *POST*
-   * PATH parameters: *documentId* - value any valid id
+   * PATH parameters: *document_id* - value any valid id
    * Body type: *FormData*
-   * Body example: *files :<fileData>*
+   * Body example: *document_file :<fileData>*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "sucess", "body" : {"filename" : "file_1.pdf"} }
@@ -327,16 +327,6 @@ TBD:  with the help of AI we will analyze content of uploaded document and build
 
     </details>
 	
-	<details>
-  <summary>File Class</summary>
-  
-#### Model Description  
-  * Nested class without own id
-  * Purpose: describe attached file
-  * Fields:
-	* fileName
-    * createTime
-    </details>
 	
 	
 	<details>

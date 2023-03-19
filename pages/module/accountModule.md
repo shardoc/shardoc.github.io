@@ -18,8 +18,8 @@ We expose two endpoints for registration flow
    * Http method: *POST*
    * Body type: JSON
    * Body fileds:
-     * ***login*** - **mandatory** parameter, must be valid email
-   * Body example: *{"login" : "user@email.com"}*
+     * ***email*** - **mandatory** parameter, must be valid email
+   * Body example: *{"email" : "user@email.com"}*
    * Response type: JSON
    * Response example: 
       * available: *{ "status" : "success"}*
@@ -30,10 +30,11 @@ We expose two endpoints for registration flow
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
-     * ***login*** - **mandatory** parameter, must be valid email
+     * ***email*** - **mandatory** parameter, must be valid email
      * ***password*** - **mandatory** parameter
-     * *fullName* - optional parameter
-   * Body example: {"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}
+     * *first* - optional parameter - first name
+     * *last* - optional parameter - last name
+   * Body example: {"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}
    * Response type: JSON
    * Response example:  
       * success: *{ "status" : "sucsess", "body" : {"accountId" : "l93kdf8"}}*
@@ -83,9 +84,9 @@ We expose one endpoint for login flow
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
-     * ***login*** - **mandatory** parameter
+     * ***email*** - **mandatory** parameter
      * ***password*** - **mandatory** parameter
-   * Body example: *{"login" : "user@email.com", "password" : "wuy8632k!h89sd#"}*
+   * Body example: *{"email" : "user@email.com", "password" : "wuy8632k!h89sd#"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success", "body" : {"token" : "lkjdsf6si7fd987fgh867sduoi3k3b"} }*
@@ -105,8 +106,8 @@ We expose one endpoint for reset password flow
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
-     * ***login*** - **mandatory** parameter
-   * Body example: *{"login" : "user@email.com"}*
+     * ***email*** - **mandatory** parameter
+   * Body example: *{"email" : "user@email.com"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
@@ -138,21 +139,20 @@ Implemented on UI
 We expose one endpoint for change password flow
 
 ###### 1. Change password
-   * Path: */account/password/update*
+   * Path: */account/password/change*
    * Http method: *POST*
    * Body type: JSON
    * Body fields:
-     * ***oldPassword*** - **mandatory** parameter
-     * ***new password*** -  **mandatory** parameter
-   * Body example: *{"oldPassword" : "hi&7hh4+", "new password" : "jd7_g2$hj"}*
+     * ***new_password*** -  **mandatory** parameter
+   * Body example: *{"new_password" : "jd7_g2$hj"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/password/update* url 
-with required json body and jwt token on headers/parameters. Application checks if there is such user with given old password. If there is no such user we should send failed response 
+* User executes request on */account/password/change* url 
+with required json body and jwt token on headers/parameters. Application checks if there is such user. If there is no such user we should send failed response 
 on request and stop execution otherwise proceed to the next step.
 *  Update user profile with new password
 *  Send confirmation email to user
@@ -172,7 +172,7 @@ We expose one endpoint for profile updating
    * Body type: JSON
    * Body fields:
      * *fullName* - optional parameter
-   * Body example: *{"fullName" : "John Smith"}*
+   * Body example: *{"first" : "John", "last":"Smith"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
@@ -193,18 +193,18 @@ with required json body and jwt token on headers
 We expose one endpoint for joining required space
 
 ###### 1. Join space
-   * Path: */account/space/{spaceId}/join*
+   * Path: */account/space/{space_id}/join*
    * Http method: *POST*
    * Body type: EMPTY
    * Path params:
-     * *spaceId* - mandatory parameter
+     * *space_id* - mandatory parameter
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/space/join/{spaceId}* url 
+* User executes request on */account/space/join/{space_id}* url 
 with required path parameter *spaceId* and jwt token on headers. User could join up to 5 different spaces (more for paid accounts)
 *  Update user profile with required space id
 
@@ -218,18 +218,18 @@ with required path parameter *spaceId* and jwt token on headers. User could join
 We expose one endpoint for leaving required space
 
 ###### 1. Leave space
-   * Path: */account/space/{spaceId}/leave*
+   * Path: */account/space/{space_id}/leave*
    * Http method: *POST*
    * Body type: EMPTY
    * Path params:
-     * *spaceId* - mandatory parameter
+     * *space_id* - mandatory parameter
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
       * failed: *{ "status" : "failed" }*
 
 ##### Steps
-* User executes request on */account/space/leave/{spaceId}* url 
+* User executes request on */account/space/{space_id}/leave* url 
 with required path parameter *spaceId* and jwt token on headers. 
 *  Update user profile and remove requested space id
 
@@ -283,38 +283,14 @@ and send confirmation email with confirmation and rejection urls
   * Purpose: keep user info structure and corresponding db methods
   * Fields:
     * id 
-    * fullName
-    * login
+    * first
+    * last
+    * email
     * password
     * spaces[] - by default this list contains only *global* space, max number of spaces is 5
     * status - possible values: pending, active, suspended, closed
-    * createTime
-    * updateTime
-  * Methods:
-    * findByLogin
-    * update
-    * insert
-    * delete
-    
+    * create_time
+    * update_time    
   </details>
-   <details>
-  <summary>AuthController Class</summary>
-  
-  * Purpose: describe authentication API
-  * Methods:
-    * checkLogin
-    * registerAccount
-    * login
-
-    </details>
-   <details>
-  <summary>AccountController Class</summary>
-  
-  * Purpose: describe authentication API
-  * Methods:
-    * updatePassword
-    * updateAccount
-    * joinSpace
-    * leaveSpace
-    * closeAccount
-</details>
+ 
+ 

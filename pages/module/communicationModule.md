@@ -13,7 +13,7 @@ We expose one endpoint for a sending message.
    * Path: */message*
    * Http method: *POST*
    * Body type: *JSON*
-   * Body example: *{"recipientId":"ds678s79s", "message":"Hello, it's me"}*
+   * Body example: *{"recipient_id":"ds678s79s", "message":"Hello, it's me"}*
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "success" }*
@@ -29,9 +29,9 @@ We expose one endpoint for a sending message.
 We expose one endpoint for deleting message
 
 #### 3. Delete message
-   * Path: */message/{messageId}*
+   * Path: */message/{message_id}*
    * Http method: *DELETE*
-   * PATH parameters: *messageId* - value any valid message id
+   * PATH parameters: *message_id* - value any valid message id
    * Response type: JSON
    * Response example: 
       * success: *{ "status" : "sucess" }
@@ -44,12 +44,13 @@ We expose one endpoint for deleting message
 We expose one endpoint for a communication history.
 
 #### 3. Get Conversation
-   * Path: */message/{recipientId}*
+   * Path: */message/{recipient_id}?last_id={value}&size={value}*
    * Http method: *GET*
-   * PATH parameters: *recipientId* - value any valid message recipient id
+   * PATH parameters: *recipient_id* - value any valid message recipient id
+   * Query parameters: *last_id* and *size* paging parameters
    * Response type: JSON
    * Response example: 
-      * success: *{ "status" : "sucess", "body" : [{"recipientId":"ds678s79s","senderId":"dfr45tr", "message":"Hello, it's me"},{"recipientId":"ds678s79s", "senderId" : "sfsf98dfld9", "message":"How are you"}] }
+      * success: *{ "status" : "sucess", "body" : [{"recipient_id":"ds678s79s","owner_id":"dfr45tr", "message":"Hello, it's me"},{"recipient_id":"ds678s79s", "owner_id" : "sfsf98dfld9", "message":"How are you"}] }
       * failed: *{ "status" : "failed", "error":"Cannot update message" }*
 
 </details>
@@ -63,19 +64,12 @@ We expose one endpoint for a communication history.
   * Purpose: describe messages sent by user
   * Fields:
     * id 
-	* ownerId
-	* recipientId
+	* owner_id
+	* recipient_id
     * message - max 160 characters
 	* status - possible values: *sent*, *failed*, *read*
     * createTime
     * updateTime
-  * Methods:
-    * findById
-	* findAll
-    * update
-    * insert
-    * delete
-
     </details>
 	
 
